@@ -1,5 +1,6 @@
 import {useState} from "react"
 import { useNavigate } from "react-router";
+import { Link } from "react-router-dom";
 
 function Register(){
 
@@ -59,7 +60,8 @@ function Register(){
                 <input className="form-control mb-2" placeholder="Telefono" onChange={(e) => setForm({
                     ... form, telefono: e.target.value})} />
 
-                    <button className="btn- btn-primary w-100">Clicca per registrarti</button>
+                    <button className="btn btn-primary w-100">Clicca per registrarti</button>
+                    <Link to="/login" className="text-decoration-none">Sei già registrato? Clicca qui per il login</Link>
                  </form>
         </div>
     );

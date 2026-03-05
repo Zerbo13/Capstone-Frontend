@@ -1,5 +1,6 @@
 import {useState} from "react"
 import { useNavigate } from "react-router";
+import { Link } from "react-router-dom";
 
 export default function Login(){
 
@@ -29,7 +30,14 @@ export default function Login(){
         .then(data => {
             localStorage.setItem("token", data.accessToken);
             localStorage.setItem("ruolo", data.ruolo);
-            navigate("/");
+
+            if(data.ruolo === "ADMIN"){
+                navigate("/admin");
+            }else{ 
+                navigate("/utente");
+            }
+
+        
         })
         .catch(err => {
    setError("Email o password errate!");
@@ -55,7 +63,8 @@ export default function Login(){
                 <input className="form-control mb-2" placeholder="Password" type="password" onChange={(e) => setForm({
                     ... form, password: e.target.value})} />
 
-                    <button className="btn- btn-primary w-100">Clicca per accedere</button>
+                    <button className="btn btn-primary w-100">Clicca per accedere</button>
+                    <Link to="/register" className="text-decoration-none">Non sei ancora già registrato? Clicca qui per registrarti</Link>
                  </form>
         </div>
     );
