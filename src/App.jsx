@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes, useLocation } from "react-router"
+import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom"
 import Home from "./Components/Home"
 import Login from "./Components/Login"
 import Register from "./Components/Register"
@@ -8,7 +8,6 @@ import NavbarPadel from "./Components/NavbarPadel";
 
 function App() {
 const location = useLocation();
-const ruolo = localStorage.getItem("ruolo");
 const visualizzaNavbar = location.pathname === "/login" || location.pathname === "/register";
 
   return (
@@ -25,9 +24,6 @@ const visualizzaNavbar = location.pathname === "/login" || location.pathname ===
 
    <Route path="/admin" element={<AdminHome />} />
       <Route path="/user" element={<UserHome />} />
-
-       <Route path="/" element={ruolo === "ADMIN"? <AdminHome /> : ruolo === "USER" ? <UserHome />: <Login />}/>
-
 
 
 

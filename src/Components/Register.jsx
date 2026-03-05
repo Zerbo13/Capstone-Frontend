@@ -14,6 +14,7 @@ function Register(){
         telefono: ""
     });
 
+    const[error, setError] = useState("");
     const handleSubmit = (e) =>{
         e.preventDefault();
 
@@ -22,12 +23,20 @@ function Register(){
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify(form)
         })
-        .then(res => res.json())
+        .then(async res => {
+            if(!res.ok){
+                const err = await res.json();
+                throw new Error(err.message || "Errore nella registrazione");
+            }
+            return res.json;
+        })
         .then(() => {
             alert("Registrazione avvenuta con successo!");
             navigate("/login");
         })
-        .catch(err => console.error(err));
+        .catch(err => {
+            setError(err.message);
+        });
     };
 
     return(
@@ -35,6 +44,9 @@ function Register(){
             <h2>Registrati!</h2>
 
             <form onSubmit={handleSubmit} className="mt-3"> 
+
+            {error && <div className="alert alert-warning">{error}</div>}
+
 
            {/*NOME */}
                 <input className="form-control mb-2" placeholder="Nome" onChange={(e) => setForm({
