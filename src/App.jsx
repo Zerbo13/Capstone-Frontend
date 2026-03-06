@@ -8,37 +8,42 @@ import NavbarPadel from "./Components/NavbarPadel";
 import ServiziPadel from "./Components/ServiziPadel";
 import CampiPadel from "./Components/CampiPadel";
 import PrenotaPadel from "./Components/PrenotaPadel";
-import ChiSiamo from "./Components/ChiSiamo";
+import PrenotazioniUtente from "./Components/PrenotazioniUtente";
+import { useState } from "react";
+import "./App.css";
 
 
 function App() {
+    const [isLogged, setIsLogged] = useState(!!localStorage.getItem("token"));
 const location = useLocation();
-const visualizzaNavbar = location.pathname === "/login" || location.pathname === "/register";
+const visualizzaNavbar = ["/login", "/register", "/home"].includes(location.pathname);
 
   return (
     <>
-    {!visualizzaNavbar && <NavbarPadel />}
+    {!visualizzaNavbar && <NavbarPadel  isLogged={isLogged} setIsLogged={setIsLogged}/>}
      
+           <div className="bgPage min-vh-100 pt-4">
+
     <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/home" element={<Home />} />
 
 
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
 
 
-   <Route path="/admin" element={<AdminHome />} />
+   <Route path="/admin" element={<AdminHome /> }/>
       <Route path="/user" element={<UserHome />} />
 
       <Route path="/servizi" element={ <ServiziPadel />}/>
       <Route path="/campi" element={ <CampiPadel />}/>
       <Route path="/prenotazioni" element={ <PrenotaPadel />}/>
-      <Route path="/chiSiamo" element={ <ChiSiamo />}/>
+      <Route path="/prenotazioniUtente" element={ <PrenotazioniUtente />}/>
 
 
-
-
+      <Route path="*" element={<Home />}></Route>
     </Routes>
+</div>
 
   
     </>
