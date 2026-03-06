@@ -16,3 +16,9 @@
   list-style: none;
   padding-left: 0;
 }
+
+.navabar-padel {
+  background-color: white;
+  padding: 10px 0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+}

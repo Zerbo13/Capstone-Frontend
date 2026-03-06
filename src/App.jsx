@@ -9,6 +9,8 @@ import ServiziPadel from "./Components/ServiziPadel";
 import CampiPadel from "./Components/CampiPadel";
 import PrenotaPadel from "./Components/PrenotaPadel";
 import PrenotazioniUtente from "./Components/PrenotazioniUtente";
+import FooterPadel from "./Components/FooterPadel";
+
 import { useState } from "react";
 import "./App.css";
 
@@ -16,7 +18,7 @@ import "./App.css";
 function App() {
     const [isLogged, setIsLogged] = useState(!!localStorage.getItem("token"));
 const location = useLocation();
-const visualizzaNavbar = ["/login", "/register", "/home"].includes(location.pathname);
+const visualizzaNavbar = ["/login", "/register"].includes(location.pathname);
 
   return (
     <>
@@ -45,7 +47,7 @@ const visualizzaNavbar = ["/login", "/register", "/home"].includes(location.path
     </Routes>
 </div>
 
-  
+<FooterPadel />
     </>
   )
 }

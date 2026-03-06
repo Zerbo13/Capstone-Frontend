@@ -32,7 +32,7 @@ function NavbarPadel({isLogged, setIsLogged}) {
   };
 
   return (
-    <Navbar expand="lg" className="bg-body-white">
+    <Navbar expand="lg" className="navabar-padel sticky-top">
       <Container>
         <Navbar.Brand href={linkHome} style={{marginLeft: "-60px"}}>
           <img src="/public/logos/logo_padel.png" alt="Logo" width={180} className='m-0 p-0'/>

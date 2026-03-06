@@ -41,7 +41,7 @@ function Register(){
 
     return(
         <div className="container mt-5">
-            <h2>Registrati!</h2>
+            <h2 className="text-white">Registrati!</h2>
 
             <form onSubmit={handleSubmit} className="mt-3"> 
 
@@ -73,7 +73,7 @@ function Register(){
                     ... form, telefono: e.target.value})} />
 
                     <button className="btn btn-primary w-100">Clicca per registrarti</button>
-                    <Link to="/login" className="text-decoration-none">Sei già registrato? Clicca qui per il login</Link>
+                    <Link to="/login" className="text-decoration-none text-white">Sei già registrato? Clicca qui per il login</Link>
                  </form>
         </div>
     );

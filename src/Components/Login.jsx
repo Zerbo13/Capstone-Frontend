@@ -72,7 +72,7 @@ useEffect(() => {
 
   return (
     <div className="container mt-5">
-      <h2>Accedi!</h2>
+      <h2 className="text-white">Accedi!</h2>
       <form onSubmit={handleSubmit} className="mt-3">
         {error && <div className="alert alert-danger">{error}</div>}
 
@@ -98,8 +98,8 @@ useEffect(() => {
           Accedi
         </button>
 
-        <Link to="/register" className="text-decoration-none mt-2 d-block">
-          Non sei registrato? Clicca qui per registrarti
+        <Link to="/register" className="text-decoration-none mt-2 d-block text-white">
+          Non sei ancora registrato? Clicca qui per registrarti
         </Link>
       </form>
     </div>
