@@ -73,7 +73,9 @@ function Register(){
                     ... form, telefono: e.target.value})} />
 
                     <button className="btn btn-primary w-100">Clicca per registrarti</button>
-                    <Link to="/login" className="text-decoration-none text-white">Sei già registrato? Clicca qui per il login</Link>
+                    <Link to="/login" className="text-decoration-none text-white">Sei già registrato? Clicca qui per il login ↩️</Link><br></br>
+                    <Link to="/home" className="text-decoration-none text-white mt-0">Torna alla home</Link>
+
                  </form>
         </div>
     );

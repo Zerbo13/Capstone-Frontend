@@ -100,7 +100,9 @@ useEffect(() => {
 
         <Link to="/register" className="text-decoration-none mt-2 d-block text-white">
           Non sei ancora registrato? Clicca qui per registrarti
-        </Link>
+        </Link><br></br>
+        <Link to="/home" className="text-decoration-none text-white mt-o">Torna alla home ↩️</Link>
+
       </form>
     </div>
   );
