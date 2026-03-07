@@ -124,15 +124,16 @@ function PrenotaPadel(){
 
     return(
         <div className="container mt-5">
-            <h2>Prenota il tuo campo!</h2>
+            <h2 className="text-white text-center">Prenota il tuo campo!</h2>
 
+            < div className="bg-white bg-opacity-10 rounded-4 p-5 " >
             <form onSubmit={handleSubmit} className="mt-3"> 
 
             {error && <div className="alert alert-warning">{error}</div>}
 
 
            {/*Servizio */}
-           <label className="mt-3">Scelgi un servizio</label>
+           <label className="mt-3 text-white fw-bold fs-5">Scelgi un servizio</label>
            <select className="form-control mb-3"
            value={form.servizioId}
            onChange={(e) => setForm({ ...form, servizioId : e.target.value})}>
@@ -145,7 +146,7 @@ function PrenotaPadel(){
            </select>
 
             {/*Campo */}
-           <label className="mt-3">Scelgi un campo</label>
+           <label className="mt-3 text-white fw-bold fs-5">Scelgi un campo</label>
            <select className="form-control mb-3"
              value={form.campoId}
            onChange={(e) => setForm({ ...form, campoId : e.target.value})}>
@@ -159,7 +160,7 @@ function PrenotaPadel(){
 
 
            {/*Data */}
-           <label className="mt-3">Scelgi un data</label>
+           <label className="mt-3 text-white fw-bold fs-5">Scelgi un data</label>
            <input type="date" className="form-control mb-3"
              value={form.data} 
              onChange={(e) => setForm({ ...form, data : e.target.value})}  />
@@ -168,15 +169,15 @@ function PrenotaPadel(){
             {/*Orari */}
             {orari.length > 0 &&(
                 <>
-           <label className="mt-3">Scelgi un orario</label>
+           <label className="mt-3 text-white fw-bold fs-5">Scelgi un orario</label>
            <div className="row mt-2">
             {orari.map((slot, index) => (
                 <div key={index} className="col-4 mb-3"> 
-                <div className="p-3 border rounded text-center"
+                <div className="p-3 border rounded-5 text-center"
                 style={{
                     cursor : "pointer",
-                    backgroundColor: form.oraInizio === slot.inizio ? "#007bff" : "white",
-                    color: form.oraInizio === slot.inizio ? "white" : "black",
+                    backgroundColor: form.oraInizio === slot.inizio ? "#007bff" : "#266F44",
+                    color: form.oraInizio === slot.inizio ? "white" : "white",
                     borderColor: form.oraInizio === slot.inizio ? "#0056b3" : "#ccc"
                 }}
                 onClick={() => setForm({ ...form, oraInizio : slot.inizio, oraFine : slot.fine})}>
@@ -189,10 +190,11 @@ function PrenotaPadel(){
         )}
 
         {/*Note */}
-        <label>Note</label>
-        <textarea className="form-control mb-3"   value={form.note} placeholder="Aggiungi cosa ti serve per la partita!" onChange={(e) => setForm({...form, note: e.target.value})}/>
-            <button type="submit" className="btn btn-primary w-25 mt-3">Invia Prenotazione</button>
-         </form>  
+        <label className="text-white fw-bold fs-5">Note </label>
+        <textarea className="form-control mb-3 "   value={form.note} placeholder="Aggiungi cosa ti serve per rendere la tua partita perfetta!" onChange={(e) => setForm({...form, note: e.target.value})}/>
+            <button type="submit" className="btn btn-primary w-25 mt-3 mb-5">Invia Prenotazione</button>
+         </form>
+         </div>  
          </div>
     );
 }

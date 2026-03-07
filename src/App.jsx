@@ -11,7 +11,7 @@ import PrenotaPadel from "./Components/PrenotaPadel";
 import PrenotazioniUtente from "./Components/PrenotazioniUtente";
 import FooterPadel from "./Components/FooterPadel";
 
-import { useState } from "react";
+import {  useState } from "react";
 import "./App.css";
 
 
@@ -22,15 +22,18 @@ const visualizzaNavbar = ["/login", "/register"].includes(location.pathname);
 
   return (
     <>
+    
+   
     {!visualizzaNavbar && <NavbarPadel  isLogged={isLogged} setIsLogged={setIsLogged}/>}
      
+    
            <div className="bgPage min-vh-100 pt-4">
 
     <Routes>
         <Route path="/home" element={<Home />} />
 
 
-      <Route path="/login" element={<Login />} />
+      <Route path="/login" element={<Login setIsLogged={setIsLogged}/>} />
       <Route path="/register" element={<Register />} />
 
 
@@ -48,6 +51,7 @@ const visualizzaNavbar = ["/login", "/register"].includes(location.pathname);
 </div>
 
 <FooterPadel />
+
     </>
   )
 }

@@ -8,19 +8,19 @@ import { Link } from "react-router-dom";
 
 
 function NavbarPadel({isLogged, setIsLogged}) {
-  const navigate = useNavigate();
-  let ruolo = null;
-  if (isLogged) {
-    const token = localStorage.getItem("token");
-    if (token) {
-      try {
-        const decoded = jwtDecode(token);
-        ruolo = decoded.ruolo;
-      } catch (err) {
-        console.error("Token non valido:", err);
-      }
-    }
+
+const navigate = useNavigate();
+let ruolo = null;
+const token = localStorage.getItem("token");
+if(token){
+  try{
+    const decoded = jwtDecode(token);
+    ruolo = decoded.ruolo;
+  }catch(err){
+    console.log("token non valido", err);
   }
+}
+  
 
 
   const linkHome = ruolo === "ADMIN" ? "/admin" : ruolo === "USER" ? "/user" : "/home";
@@ -32,20 +32,23 @@ function NavbarPadel({isLogged, setIsLogged}) {
   };
 
   return (
-    <Navbar expand="lg" className="navabar-padel sticky-top">
+    <Navbar expand="lg" className="navabar-padel sticky-top p-0">
       <Container>
         <Navbar.Brand href={linkHome} style={{marginLeft: "-60px"}}>
-          <img src="/public/logos/logo_padel.png" alt="Logo" width={180} className='m-0 p-0'/>
+          <img src="/logos/logo_padel.png" alt="Logo" width={180} className='m-0 p-0'/>
           </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link href={linkHome} className='text-dark'>Home</Nav.Link>
-            <Nav.Link href="servizi" className='text-dark'>Servizi</Nav.Link>
-            <Nav.Link href="campi" className='text-dark'>Campi</Nav.Link>
-            <Nav.Link href="prenotazioni" className='text-dark'>Prenota</Nav.Link>
-            <Nav.Link href="prenotazioniUtente" className='text-dark'>Le mie prenotazioni</Nav.Link>
-
+            <Nav.Link as={Link} to={linkHome} className='text-dark'>Home</Nav.Link>
+            <Nav.Link  as={Link} to="/servizi" className='text-dark'>Servizi</Nav.Link>
+            <Nav.Link  as={Link} to="/campi" className='text-dark'>Campi</Nav.Link>
+            { ruolo !== "ADMIN" &&(
+              <>
+            <Nav.Link  as={Link} to="/prenotazioni" className='text-dark'>Prenota</Nav.Link>
+            <Nav.Link  as={Link} to="/prenotazioniUtente" className='text-dark'>Le mie prenotazioni</Nav.Link>
+            </>
+            )}
 
           </Nav>
 
