@@ -74,6 +74,7 @@ export default function CampiPadel(){
       prezzoOra: Number(nuovoCampo.prezzoOra),
       tipo: nuovoCampo.tipo ,
       coperto: nuovoCampo.coperto,
+      immagine: nuovoCampo.immagine,
       attivo: true,
     }
     ),
@@ -203,7 +204,7 @@ runFetch();
         {campi.map((client) => (
           <Col key={client.id} xs={12} md={6} lg={6} className="my-4">
             <Card className="h-100 shadow-sm">
-              <Card.Img variant="top" src="https://www.bnlitalymajorpremierpadel.com/media_contents/news/146395/main/20220522_Campo_padel_MONDO_superficie.jpg" />
+              <Card.Img variant="top" src={client.immagine} style={{height:"200px", objectFit: "cover"}} />
               <Card.Body>
                 <div className="d-flex justify-content-between align-items-center px-1">
   <Card.Title className="fw-bold m-0">{client.nome}</Card.Title>

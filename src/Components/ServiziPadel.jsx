@@ -74,6 +74,7 @@ function ServiziPadel(){
       descrizione: nuovoServizio.descrizione,
       prezzo: Number(nuovoServizio.prezzo),
       durata: nuovoServizio.durata +":00",
+      immagine: nuovoServizio.immagine,
       attivo: true
     }
     ),
