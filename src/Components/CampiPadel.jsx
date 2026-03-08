@@ -1,8 +1,10 @@
 import  {jwtDecode}  from "jwt-decode";
 import { useEffect, useState } from "react"
-import { Col, Container, Row, Card, Button } from "react-bootstrap"
+import { Col, Container, Row, Card, Button, Modal } from "react-bootstrap"
 import { Form } from "react-bootstrap";
 import Alert from 'react-bootstrap/Alert';
+import { Link } from "react-router-dom";
+
 
 
 
@@ -10,11 +12,14 @@ export default function CampiPadel(){
     const [campi, setCampi] = useState([])
       const[visualizzaForm, setvisualizzaForm] = useState(false);
       const[mostraAlert, setMostraAlert] = useState(false);
+      const[mostraMessaggio, setMostraMessaggio] = useState(false);
+  const[campoEliminato, setCampoEliminato] = useState(null);
   const[nuovoCampo, setNuovocampo]=useState({
     nome :"",
     descrizione :"",
     prezzoOra :"",
     tipo :"",
+    immagine: "",
     coperto: false,
   });
   const token = localStorage.getItem("token");
@@ -29,6 +34,8 @@ export default function CampiPadel(){
     }
   }
 
+
+  {/*Fetch GET */}
 
   const runFetch = () => {
     fetch("http://localhost:3001/campi", {
@@ -50,7 +57,9 @@ export default function CampiPadel(){
     runFetch()
   }, []);
 
-  
+
+  {/*Fetch POST */}
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -82,6 +91,65 @@ export default function CampiPadel(){
   .catch((err) => console.error(err));
   };
 
+  
+  {/*Fetch DELETE */}
+  const handleDelete = (id) => {
+    setCampoEliminato(id);
+    setMostraMessaggio(true);
+  }
+  const confermaEliminazione = () => {
+    fetch(`http://localhost:3001/campi/${campoEliminato}`, {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    .then((res) =>{
+      if(!res.ok) throw new Error("Errore nell'eliminazione del campo");
+      setMostraMessaggio(false);
+      runFetch();
+    })
+    .catch((err) => console.error(err));
+  };
+
+{/*Fetch PUT */}
+const getCampoId = async(id)=>{
+  const result = await fetch(`http://localhost:3001/campi/${id}`, {
+      headers: {
+        Authorization: `Bearer ${token}`},
+      });
+      return result.json();
+    }
+  
+
+const handleAttivo = async(id, stato) =>{
+
+  try{
+    const campo= await getCampoId(id);
+    const payload ={
+      nome : campo.nome,
+      descrizione: campo.descrizione,
+      coperto: campo.coperto,
+      prezzoOra: campo.prezzoOra,
+      tipo: campo.tipo,
+      immagine: campo.immagine,
+      attivo: !stato,
+    };
+    const result = await fetch(`http://localhost:3001/campi/${id}`, {
+method : "PUT",
+headers: {
+  "Content-Type" : "application/json",
+   Authorization: `Bearer ${token}`,
+   },
+    body: JSON.stringify(payload),
+});
+if(!result.ok) throw new Error("Errore nella modifica dello stato nel campo");
+runFetch();
+  }catch(err) {
+    console.error(err);
+  }
+};
+
     return(
         <Container className="mt-4">
             <h1 className="text-white text-center">I nostri campi</h1>
@@ -110,7 +178,11 @@ export default function CampiPadel(){
                   <Form.Label>Tipo</Form.Label>
                   <Form.Control type="text" value={nuovoCampo.tipo} onChange={(e) => setNuovocampo({...nuovoCampo, tipo: e.target.value})}/>
                 </Form.Group>
-          
+                 {/*Immagine */}
+                <Form.Group className="mb-3">
+                  <Form.Label>Immagine del servizio</Form.Label>
+                  <Form.Control type="file" accept="image/" onChange={(e) => setNuovocampo({...nuovoCampo, immagine: URL.createObjectURL(e.target.files[0])})}/>
+                </Form.Group>
                 {/*Coperto */}
                 <Form.Group className="mb-3">
                   <Form.Check type="checkbox" label="Coperto" checked={nuovoCampo.coperto} onChange={(e) => setNuovocampo({...nuovoCampo, coperto: e.target.checked})}/>
@@ -119,34 +191,61 @@ export default function CampiPadel(){
                 <Button type="submit" className="button-log">Aggiungi il nuovo servizio</Button>
               </Form>
             )}
+            <Modal show={mostraMessaggio} onHide={() => setMostraMessaggio(false)} centered>
+              <Modal.Header closeButton>
+                <Modal.Title>Conferma l'eliminazione del campo!</Modal.Title>
+              </Modal.Header>
+              <Modal.Body>Sei sicuro di voler eliminare il campo?</Modal.Body>
+             <Modal.Footer><Button variant="success" onClick={()=> setMostraMessaggio(false)}>Annulla</Button>
+             <Button variant="danger" onClick={confermaEliminazione}>Elimina</Button></Modal.Footer> 
+            </Modal>
             <Row>
         {campi.map((client) => (
-          <Col key={client.id} xs={12} md={4} lg={2} className="my-4">
-            <Card className="h-100 my-3">
-              <Card.Img variant="top" src={client.logo} />
+          <Col key={client.id} xs={12} md={6} lg={6} className="my-4">
+            <Card className="h-100 shadow-sm">
+              <Card.Img variant="top" src="https://www.bnlitalymajorpremierpadel.com/media_contents/news/146395/main/20220522_Campo_padel_MONDO_superficie.jpg" />
               <Card.Body>
-                <Card.Title>{client.ragioneSociale}</Card.Title>
-                <Card.Text className="fs-6">
-                  nome:
-                  <br />
-                  {client.nome}
+                <div className="d-flex justify-content-between align-items-center px-1">
+  <Card.Title className="fw-bold m-0">{client.nome}</Card.Title>
+
+  {ruolo === "ADMIN" && (
+    <Button
+      variant="danger"
+      size="sm"
+      onClick={() => handleDelete(client.id)}
+    >
+      Elimina Campo
+    </Button>
+  )}
+</div>
+
+{ruolo === "ADMIN" && (
+  <div className="d-flex justify-content-end px-1 mt-1">
+    <Button
+      variant={client.attivo ? "warning" : "success"}
+      size="sm"
+      onClick={() => handleAttivo(client.id, client.attivo)}
+    >
+      {client.attivo ? "Disattiva" : "Attiva"}
+    </Button>
+  </div>
+)}
+                <Card.Text>
+                  descrizione: {client.descrizione} 
                 </Card.Text>
                 <Card.Text>
-                  descrizione: <br />
-                  {client.descrizione} 
+                  prezzo ora: {client.prezzoOra} €
                 </Card.Text>
                 <Card.Text>
-                  prezzo ora: <br />
-                  {client.prezzoOra} €
+                  tipo: {client.tipo}
                 </Card.Text>
-                <Card.Text>
-                  tipo: <br />
-                  {client.tipo}
+                <Card.Text> Campo {client.coperto ? "Coperto" : "Panoramico"}
                 </Card.Text>
-                <Card.Text>
-                  coperto: <br />
-                  {client.coperto}
+                 <Card.Text>
+                    Campo {client.attivo ? "Attivo" : "Non Attivo"}
                 </Card.Text>
+                <Link to="/prenotazioni" className="btn mt-0 button-log  text-center">Prenota questo campo </Link>
+
               </Card.Body>
             </Card>
           </Col>
