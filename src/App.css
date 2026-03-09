@@ -23,3 +23,18 @@
   padding: 10px 0;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
 }
+
+tr :nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th,
+td {
+  border-bottom: 1px solid #ddd;
+  padding: 12px;
+}

@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 function AdminHome(){
     return(
         <div className="container mt-5 text-center">
+            
             <div className="row align-items-center">
         <div className="col-md-6 text-center text-md-start">
         <h1 className="text-white mb-4">Benvenuto su Zerbo Padel!</h1>

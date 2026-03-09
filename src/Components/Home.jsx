@@ -6,11 +6,14 @@ import { PiTennisBallBold } from "react-icons/pi";
 export default function Home(){
     return(
     <div className="container mt-5 text-center">
+       <h1 className="text-white mb-4">Benvenuto su Zerbo Padel!</h1>
+      <div className="mb-4"><video src="/public/video/VideoPadel.mp4" className="w-100" autoPlay loop   style={{borderRadius: "10px", maxHeight: "500px", objectFit:"cover"}}/>
+      </div>
             <div className="row align-items-center">
         <div className="col-md-6 text-center text-md-start">
-        <h1 className="text-white mb-4">Benvenuto su Zerbo Padel!</h1>
+       
            < div className="bg-white bg-opacity-10 rounded-4 p-5">
-                <img src="./public/img/img_campoLogo.png" class="img-fluid p-2 bg-light" alt="Foto padel" />
+                <img src="./public/img/img_campoLogo.png" className="img-fluid p-2 bg-light" alt="Foto padel" />
                 <p className="mt-3 mb-0 fs-5 text-center text-white">Prenota, gioca, divertiti.</p>
               </div>
  </div>
@@ -19,11 +22,12 @@ export default function Home(){
     <ul className="text-white list-item">
         <li className="pt-1">Il miglior sito di prenotazioni di campi da padel!😜</li>
         <li className="pt-1">Il miglior circolo di padel in tutta Italia 🎾</li>
-        <li className="pt-1">Registrati per scoprire e prenotare i nostri servizi!</li>
+        <li className="pt-1">Campi di ultima generazione e con nuove tecnologie</li>
         <li className="pt-1">Istruttori qualificati e selezionati dalla FITP <PiTennisBallBold /></li>
     </ul>
   
 
+  <p className="text-white mt-5 mb-0"> Accedi per prenotare e scoprire i nostri servizi!</p>
         <Link to="/register" className="btn mt-4 button-log">Clicca per registrarti o per fare il login </Link>
 </div>
 </div>

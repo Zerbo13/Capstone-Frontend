@@ -49,7 +49,7 @@ function ServiziPadel(){
       .then((response) => response.json())
       .then((data) => {
         console.log(data)
-        setServizi(data.content);
+        setServizi( data.content || []);
       })
       .catch((error) => {
         console.error("Error:", error)
@@ -189,6 +189,8 @@ runFetch();
                 <Button type="submit" className="button-log">Aggiungi il nuovo servizio</Button>
               </Form>
             )}
+
+            {/* MODALE ELIMINAZIONE */}
             <Modal show={mostraMessaggio} onHide={() => setMostraMessaggio(false)} centered>
               <Modal.Header closeButton>
                 <Modal.Title>Conferma l'eliminazione del servizio!</Modal.Title>

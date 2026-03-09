@@ -192,7 +192,7 @@ function PrenotaPadel(){
         {/*Note */}
         <label className="text-white fw-bold fs-5">Note </label>
         <textarea className="form-control mb-3 "   value={form.note} placeholder="Aggiungi cosa ti serve per rendere la tua partita perfetta!" onChange={(e) => setForm({...form, note: e.target.value})}/>
-            <button type="submit" className="btn btn-primary w-25 mt-3 mb-5">Invia Prenotazione</button>
+            <button type="submit" className="btn button-log w-25 mt-3 mb-5">Invia Prenotazione</button>
          </form>
          </div>  
          </div>

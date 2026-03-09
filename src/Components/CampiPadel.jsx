@@ -14,13 +14,19 @@ export default function CampiPadel(){
       const[mostraAlert, setMostraAlert] = useState(false);
       const[mostraMessaggio, setMostraMessaggio] = useState(false);
   const[campoEliminato, setCampoEliminato] = useState(null);
+  const immaginiCampi = [
+    "/img/Campo1.png",
+        "/img/Campo2.png",
+            "/img/Campo3.png"
+
+
+  ];
   const[nuovoCampo, setNuovocampo]=useState({
     nome :"",
     descrizione :"",
     prezzoOra :"",
     tipo :"",
-    immagine: "",
-    coperto: false,
+        coperto: false,
   });
   const token = localStorage.getItem("token");
   let ruolo =null;
@@ -74,7 +80,6 @@ export default function CampiPadel(){
       prezzoOra: Number(nuovoCampo.prezzoOra),
       tipo: nuovoCampo.tipo ,
       coperto: nuovoCampo.coperto,
-      immagine: nuovoCampo.immagine,
       attivo: true,
     }
     ),
@@ -133,7 +138,6 @@ const handleAttivo = async(id, stato) =>{
       coperto: campo.coperto,
       prezzoOra: campo.prezzoOra,
       tipo: campo.tipo,
-      immagine: campo.immagine,
       attivo: !stato,
     };
     const result = await fetch(`http://localhost:3001/campi/${id}`, {
@@ -179,11 +183,6 @@ runFetch();
                   <Form.Label>Tipo</Form.Label>
                   <Form.Control type="text" value={nuovoCampo.tipo} onChange={(e) => setNuovocampo({...nuovoCampo, tipo: e.target.value})}/>
                 </Form.Group>
-                 {/*Immagine */}
-                <Form.Group className="mb-3">
-                  <Form.Label>Immagine del servizio</Form.Label>
-                  <Form.Control type="file" accept="image/" onChange={(e) => setNuovocampo({...nuovoCampo, immagine: URL.createObjectURL(e.target.files[0])})}/>
-                </Form.Group>
                 {/*Coperto */}
                 <Form.Group className="mb-3">
                   <Form.Check type="checkbox" label="Coperto" checked={nuovoCampo.coperto} onChange={(e) => setNuovocampo({...nuovoCampo, coperto: e.target.checked})}/>
@@ -201,10 +200,10 @@ runFetch();
              <Button variant="danger" onClick={confermaEliminazione}>Elimina</Button></Modal.Footer> 
             </Modal>
             <Row>
-        {campi.map((client) => (
+        {campi.map((client, index) => (
           <Col key={client.id} xs={12} md={6} lg={6} className="my-4">
             <Card className="h-100 shadow-sm">
-              <Card.Img variant="top" src={client.immagine} style={{height:"200px", objectFit: "cover"}} />
+              <Card.Img variant="top" src={immaginiCampi[index % immaginiCampi.length]} style={{height:"250px", objectFit: "cover"}} />
               <Card.Body>
                 <div className="d-flex justify-content-between align-items-center px-1">
   <Card.Title className="fw-bold m-0">{client.nome}</Card.Title>
@@ -232,13 +231,13 @@ runFetch();
   </div>
 )}
                 <Card.Text>
-                  descrizione: {client.descrizione} 
+                  Descrizione: {client.descrizione} 
                 </Card.Text>
                 <Card.Text>
-                  prezzo ora: {client.prezzoOra} €
+                  Prezzo ora: {client.prezzoOra} €
                 </Card.Text>
                 <Card.Text>
-                  tipo: {client.tipo}
+                  Tipo: {client.tipo}
                 </Card.Text>
                 <Card.Text> Campo {client.coperto ? "Coperto" : "Panoramico"}
                 </Card.Text>
