@@ -17,9 +17,8 @@ export default function CampiPadel(){
   const immaginiCampi = [
     "/img/Campo1.png",
         "/img/Campo2.png",
-            "/img/Campo3.png"
-
-
+            "/img/Campo3.png",
+            "/img/Campo4.png"
   ];
   const[nuovoCampo, setNuovocampo]=useState({
     nome :"",

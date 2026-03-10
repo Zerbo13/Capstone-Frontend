@@ -14,12 +14,17 @@ function ServiziPadel(){
   const[mostraAlert, setMostraAlert] = useState(false);
   const[mostraMessaggio, setMostraMessaggio] = useState(false);
   const[servizioEliminato, setServizioEliminato] = useState(null);
+   const immaginiServizi = [
+    "/img/Servizio1.png",
+        "/img/Servizio2.png",
+            "/img/Servizio3.png",
+            "/img/Servizio4.png"
+  ];
   const[nuovoServizio, setNuovoServizio]=useState({
     nome :"",
     descrizione :"",
     prezzo :"",
     durata :"",
-    immagine: "",
     attivo: "",
   });
 
@@ -74,7 +79,6 @@ function ServiziPadel(){
       descrizione: nuovoServizio.descrizione,
       prezzo: Number(nuovoServizio.prezzo),
       durata: nuovoServizio.durata +":00",
-      immagine: nuovoServizio.immagine,
       attivo: true
     }
     ),
@@ -132,7 +136,6 @@ const handleAttivo = async(id, stato) =>{
       descrizione: servizio.descrizione,
       prezzo: servizio.prezzo,
       durata: servizio.durata,
-      immagine: servizio.immagine,
       attivo: !stato,
     };
     const result = await fetch(`http://localhost:3001/servizi/${id}`, {
@@ -156,7 +159,7 @@ runFetch();
         <Container className="mt-4">
             <h1 className="text-white text-center">I nostri servizi </h1>
             {ruolo === "ADMIN" && (<Button className="button-log mt-3" onClick={() => setvisualizzaForm(!visualizzaForm)}>{visualizzaForm? "Chiudi il form" : "Aggiungi un nuovo servizio"}</Button>)}
-            {mostraAlert && ( <Alert variant="success" className="mt-3">Campo creato correttamente!</Alert>)}
+            {mostraAlert && ( <Alert variant="success" className="mt-3">Servizio creato correttamente!</Alert>)}
             {visualizzaForm && (
               <Form className="bg-white bg-opacity-10 text-white p-4 rounded mt-4" onSubmit={handleSubmit}>
                 <h3>Aggiungi un nuovo servizio</h3>
@@ -180,11 +183,6 @@ runFetch();
                   <Form.Label>Durata</Form.Label>
                   <Form.Control type="text" value={nuovoServizio.durata} onChange={(e) => setNuovoServizio({...nuovoServizio, durata: e.target.value})}/>
                 </Form.Group>
-                {/*Immagine */}
-                <Form.Group className="mb-3">
-                  <Form.Label>Immagine del servizio</Form.Label>
-                  <Form.Control type="file" accept="image/" onChange={(e) => setNuovoServizio({...nuovoServizio, immagine: URL.createObjectURL(e.target.files[0])})}/>
-                </Form.Group>
 
                 <Button type="submit" className="button-log">Aggiungi il nuovo servizio</Button>
               </Form>
@@ -200,11 +198,11 @@ runFetch();
              <Button variant="danger" onClick={confermaEliminazione}>Elimina</Button></Modal.Footer> 
             </Modal>
       <Row>
-        {servizi.map((client) => (
+        {servizi.map((client, index) => (
           
           <Col key={client.id} xs={12} md={6} lg={6} className="my-4">
             <Card className="h-100 shadow-sm">
-              <Card.Img variant="top" src={client.immagine} style={{height:"200px", objectFit: "cover"}} />
+              <Card.Img variant="top" src={immaginiServizi[index % immaginiServizi.length]} style={{height:"250px", objectFit: "cover"}} />
               <Card.Body>
                 <div className="d-flex justify-content-between align-items-center px-1">
   <Card.Title className="fw-bold m-0">{client.nome}</Card.Title>
