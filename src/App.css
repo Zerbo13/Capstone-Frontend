@@ -5,7 +5,13 @@
 .button-log {
   background-color: #84a26e;
   color: white;
-  border: white;
+  border: none;
+  transition: 0.2s;
+}
+
+.button-log:hover {
+  background-color: #38601d;
+  color: white;
 }
 
 .foto-padel {
@@ -25,7 +31,7 @@
 }
 
 tr :nth-child(even) {
-  background-color: #f2f2f2;
+  background-color: #f8f9fa;
 }
 
 table {
@@ -37,4 +43,35 @@ th,
 td {
   border-bottom: 1px solid #ddd;
   padding: 12px;
+}
+
+.card {
+  transition:
+    transform 0.5s ease,
+    box-shadow 0.5s ease;
+}
+
+.card:hover {
+  transform: scale(1.07) translateY(-5px);
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.25);
+}
+
+.card-utenti {
+  background-color: #198754;
+}
+
+.card-prenotazioni {
+  background-color: #ffc107;
+}
+
+.card-prenotazioni-Oggi {
+  background-color: #dc3545;
+}
+
+.card-campi {
+  background-color: #0d6efd;
+}
+
+.card-servizi {
+  background-color: #0dcaf0;
 }

@@ -10,9 +10,12 @@ import CampiPadel from "./Components/CampiPadel";
 import PrenotaPadel from "./Components/PrenotaPadel";
 import PrenotazioniUtente from "./Components/PrenotazioniUtente";
 import FooterPadel from "./Components/FooterPadel";
-
 import {  useState } from "react";
 import "./App.css";
+import AllPrenotazioni from "./Components/AllPrenotazioni";
+import PrenotazioniOggi from "./Components/PrenotazioniOggi";
+import UtentiRgistrati from "./Components/UtentiRegistrati";
+import Dashboard from "./Components/Dashboard";
 
 
 function App() {
@@ -44,6 +47,13 @@ const visualizzaNavbar = ["/login", "/register"].includes(location.pathname);
       <Route path="/campi" element={ <CampiPadel />}/>
       <Route path="/prenotazioni" element={ <PrenotaPadel />}/>
       <Route path="/prenotazioniUtente" element={ <PrenotazioniUtente />}/>
+      <Route path="/allPrenotazioni" element={ <AllPrenotazioni />}/>
+      <Route path="/prenotazioniOggi" element={ <PrenotazioniOggi />}/>
+      <Route path="/utentiRegistrati" element={ <UtentiRgistrati />}/>
+      <Route path="/dashboard" element={ <Dashboard />}/>
+
+
+
 
 
       <Route path="*" element={<Home />}></Route>

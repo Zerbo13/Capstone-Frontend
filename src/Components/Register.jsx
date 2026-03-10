@@ -40,7 +40,8 @@ function Register(){
     };
 
     return(
-        <div className="container mt-5">
+        <div className="container mt-5 pb-5">
+             < div className="bg-white bg-opacity-10 rounded-4 p-5">
             <h2 className="text-white">Registrati!</h2>
 
             <form onSubmit={handleSubmit} className="mt-3"> 
@@ -77,6 +78,7 @@ function Register(){
                     <Link to="/home" className="text-decoration-none text-white mt-0">Torna alla home ↩️</Link>
 
                  </form>
+                 </div>
         </div>
     );
 }

@@ -1,5 +1,7 @@
-import {useState, useEffect} from "react"
+import {useState, useEffect} from "react";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
+
 
 function PrenotaPadel(){
     const[campi, setCampi] = useState([]);
@@ -123,7 +125,7 @@ function PrenotaPadel(){
     };
 
     return(
-        <div className="container mt-5">
+        <div className="container mt-5 pb-5">
             <h2 className="text-white text-center">Prenota il tuo campo!</h2>
 
             < div className="bg-white bg-opacity-10 rounded-4 p-5 " >
@@ -192,7 +194,7 @@ function PrenotaPadel(){
         {/*Note */}
         <label className="text-white fw-bold fs-5">Note </label>
         <textarea className="form-control mb-3 "   value={form.note} placeholder="Aggiungi cosa ti serve per rendere la tua partita perfetta!" onChange={(e) => setForm({...form, note: e.target.value})}/>
-            <button type="submit" className="btn button-log w-25 mt-3 mb-5">Invia Prenotazione</button>
+            <button as={Link} to="/prenotazioniUtente" type="submit" className="btn button-log w-25 mt-3 mb-5">Invia Prenotazione</button>
          </form>
          </div>  
          </div>

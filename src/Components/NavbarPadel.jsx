@@ -4,6 +4,7 @@ import Navbar from 'react-bootstrap/Navbar';
 import  {jwtDecode}  from "jwt-decode";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
+import NavDropdown from 'react-bootstrap/NavDropdown';
 
 
 
@@ -47,6 +48,21 @@ if(token){
               <>
             <Nav.Link  as={Link} to="/prenotazioni" className='text-dark'>Prenota</Nav.Link>
             <Nav.Link  as={Link} to="/prenotazioniUtente" className='text-dark'>Le mie prenotazioni</Nav.Link>
+            </>
+            )}
+             { ruolo !== "USER" &&(
+              <>
+            <NavDropdown title={<span style={{color: "black"}}>Dashboard</span>}  id="basic-nav-dropdown">
+              <NavDropdown.Item as={Link} to="/allPrenotazioni" className='text-center'>Visualizza tutte le prenotazioni</NavDropdown.Item>
+              <NavDropdown.Item as={Link} to="/prenotazioniOggi" className='text-center'>
+                Visualizza le prenotazioni per oggi
+              </NavDropdown.Item>
+              <NavDropdown.Item as={Link} to="/utentiRegistrati" className='text-center'>Visualizza tutti gli utente registrati</NavDropdown.Item>
+              <NavDropdown.Divider />
+              <NavDropdown.Item as={Link} to="/dashboard" className='text-center'>
+                Dashboard
+              </NavDropdown.Item>
+            </NavDropdown>
             </>
             )}
 
