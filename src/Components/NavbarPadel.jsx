@@ -44,13 +44,14 @@ if(token){
             <Nav.Link as={Link} to={linkHome} className='text-dark'>Home</Nav.Link>
             <Nav.Link  as={Link} to="/servizi" className='text-dark'>Servizi</Nav.Link>
             <Nav.Link  as={Link} to="/campi" className='text-dark'>Campi</Nav.Link>
-            { ruolo !== "ADMIN" &&(
+            
+            { ruolo !== "ADMIN" && isLogged &&(
               <>
             <Nav.Link  as={Link} to="/prenotazioni" className='text-dark'>Prenota</Nav.Link>
             <Nav.Link  as={Link} to="/prenotazioniUtente" className='text-dark'>Le mie prenotazioni</Nav.Link>
             </>
             )}
-             { ruolo !== "USER" &&(
+             { ruolo !== "USER" && isLogged &&(
               <>
             <NavDropdown title={<span style={{color: "black"}}>Dashboard</span>}  id="basic-nav-dropdown">
               <NavDropdown.Item as={Link} to="/allPrenotazioni" className='text-center'>Visualizza tutte le prenotazioni</NavDropdown.Item>

@@ -12,7 +12,7 @@ function AdminHome(){
            <h5 className="text-white mb-5">Cosa vuoi monitorare del tuo circolo?</h5>
         <Link to="/dashboard" className="btn mt-4 mb-5 button-log ">Clicca per monitorare tutte le azioni del circolo </Link>
 
-        <div div className="bg-white bg-opacity-10 rounded-4 p-5">
+        <div  className="bg-white bg-opacity-10 rounded-4 p-5">
         <h4 className="fw-bold mb-0  text-white">Gestione veloce</h4>
       <div className="row g-4 p-5">
         <div className="col">
@@ -58,7 +58,7 @@ function AdminHome(){
           <Link to="/servizi" className="card border-0 shadow-sm text-decoration-none h-100">
             <div className="card-body text-center p-4">
               <span style={{ fontSize: "2.5rem" }}>🎾</span>
-              <h6 className="fw-bold mt-2 text-dark">Campi</h6>
+              <h6 className="fw-bold mt-2 text-dark">Servizi</h6>
               <p className="text-muted small mb-0">Gestisci i servizi offerti</p>
             </div>
           </Link>
