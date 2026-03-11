@@ -64,6 +64,7 @@ export default function Recensioni(){
         setMostraAlert(true);
         setTimeout(( )=> setMostraAlert(false),3000);
         setNuovaRecensione({testo: "", stelle: 0});
+        setHover(0);
         runFetch();
       })
       .catch((err) => console.error(err));
@@ -71,7 +72,7 @@ export default function Recensioni(){
 
       const StarSvg = ({filled}) => {
         return(
-        <svg style={{ fill: filled ? "#00ffff" : "white", cursor: "pointer", transition: "fill 0.2s" }}
+        <svg style={{ fill: filled ? "#d8b400" : "white", cursor: "pointer", transition: "fill 0.2s" }}
               width="40"
               height="40"
               viewBox="0 0 47 46"
@@ -94,22 +95,21 @@ export default function Recensioni(){
       return(
         <section className="py-5 text-white">
         <div className="container">
-          <h1 className="text-center fw-bold mb-5">Recensioni di chi ci ha scelto!</h1>
             {mostraAlert && ( <Alert variant="success" className="mt-3">Recensione inviata correttamente!</Alert>)}
 
           {ruolo === "USER" && (
             <div className="row justify-content-center mb-4">
             <div className="col-12 col-md-6">
                 <Form className="bg-white bg-opacity-10 text-white p-4 rounded mt-4" onSubmit={handleSubmit}>
-                <h3 className="mb-3">Scrivi la tua recensione!</h3>
+                <h3 className="mb-3 text-center">Scrivi la tua recensione!</h3>
                 {error && <Alert variant="danger">{error}</Alert>}
                 {/*Testo */}
-                <Form.Group className="mb-3">
+                <Form.Group className="mb-3 text-center">
                   <Form.Label>Testo</Form.Label>
-                  <Form.Control as="textarea" placeholder="Scrivi la tua esperienza da noi" rows={3} value={nuovaRecensione.testo} onChange={(e) => setNuovaRecensione({...nuovaRecensione, testo: e.target.value})}/>
+                  <Form.Control as="textarea" placeholder="Scrivi l'esperienza che hai vissuto qui da noi" rows={3} value={nuovaRecensione.testo} onChange={(e) => setNuovaRecensione({...nuovaRecensione, testo: e.target.value})}/>
                 </Form.Group>
                 {/*Stelle, con questo le ho rese cliccabili*/}
-                <Form.Group className="mb-3">
+                <Form.Group className="mb-3 text-center">
                   <Form.Label>Stelle: </Form.Label>
                   <div className="d-flex justify-content-center gap-2 mt-2">
                     {[1,2,3,4,5].map((i) => (
@@ -131,6 +131,8 @@ export default function Recensioni(){
         {recensioni.length === 0 ? (
             <p className="text-center text-white">Nessuna recensione ancora prensente! Aggiungila tu per primo </p>
         ): (
+          <div>
+            <h1 className="text-center fw-bold mb-5">Recensioni di chi ci ha scelto!</h1>
             <div className="row g-4 justify-content-center">
                 {recensioni.map((r) => (
                 <div key={r.id} className="col-12 col-md-4">
@@ -147,6 +149,7 @@ export default function Recensioni(){
               </div>
             </div>
              ))}
+          </div>
           </div>
            )}
         </div>

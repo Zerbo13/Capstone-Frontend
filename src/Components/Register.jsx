@@ -15,6 +15,7 @@ function Register(){
     });
 
     const[error, setError] = useState("");
+    const[avatar, setAvatar] = useState(null);
     const handleSubmit = (e) =>{
         e.preventDefault();
 
@@ -74,6 +75,13 @@ function Register(){
             {/*TELEFONO */}
                 <input className="form-control mb-2" placeholder="Telefono" onChange={(e) => setForm({
                     ... form, telefono: e.target.value})} />
+                <div className="mb-2 text-start">
+                    <label className="text-white mb-1">Foto profilo</label>
+                    <input type="file" className="form-control" accept="image/*" onChange={(e) => setAvatar(e.target.files[0])} />
+                </div>
+                {avatar && (
+                    <img src={URL.createObjectURL(avatar)} alt="anteprima" style={{width: "80 px", height:"80px", borderRadius: "50%", objectFit: "cover", marginBottom: "10px"}} />
+                )}
 
                     <button className="btn btn-primary w-100">Clicca per registrarti</button>
                     <Link to="/login" className="text-decoration-none text-white">Sei già registrato? Clicca qui per il login </Link><br></br>

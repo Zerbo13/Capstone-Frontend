@@ -5,23 +5,38 @@ import  {jwtDecode}  from "jwt-decode";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import NavDropdown from 'react-bootstrap/NavDropdown';
+import { FaUserTie } from "react-icons/fa";
+import { useEffect, useState } from "react";
 
 
 
 function NavbarPadel({isLogged, setIsLogged}) {
 
 const navigate = useNavigate();
+const [avatar, setAvatar] = useState(null);
 let ruolo = null;
+let userId = null;
 const token = localStorage.getItem("token");
+
 if(token){
   try{
     const decoded = jwtDecode(token);
     ruolo = decoded.ruolo;
+    userId = decoded.sub;
   }catch(err){
     console.log("token non valido", err);
   }
 }
   
+useEffect(() => {
+  if(!token || !userId) return;
+  fetch(`http://localhost:3001/utenti/${userId}`, {
+    headers: { Authorization: `Bearer ${token}`}
+  })
+  .then((result) => result.json)
+  .then((data) => setAvatar(data.avatar))
+  .catch((error) => console.error(error));
+}, [isLogged]);
 
 
   const linkHome = ruolo === "ADMIN" ? "/admin" : ruolo === "USER" ? "/user" : "/home";
@@ -29,6 +44,7 @@ if(token){
   const handleLogout = () => {
     localStorage.removeItem("token");
     setIsLogged(false);
+    setAvatar(null);
     navigate("/home");
   };
 
@@ -80,14 +96,27 @@ if(token){
 
             {/* Se loggato mostra Logout */}
             {isLogged && (
-              <button
-                className="btn btn-danger mt-4 "
-                onClick={handleLogout}
-              >
+              <NavDropdown
+              title={
+                <span className='d-flex align-items-center gap-2'> 
+                {avatar ? (
+                  <img src={avatar} alt="avatar" style={{width: "35 px", height:"35", borderRadius: "50%", objectFit: "cover",border:"2px solid white"}} />
+                ) : (
+                <div style={{width: "35px", height:"35px", borderRadius: "50%", backgroundColor: "#1d548c", display: "flex", alignItems: "center", justifyContent: "center"}}>
+                  <FaUserTie style={{width: "40px",height:"25px",}} />
+                   </div>
+                )}
+                </span>
+              }
+               id="user-dropdown"
+               align="end">
+                <NavDropdown.Item as={Link} to="/profilo" className='text-center'>Il mio profilo</NavDropdown.Item>
+              <NavDropdown.Divider />
+              <NavDropdown.Item onClick={handleLogout} className='text-center text-danger'>
                 Logout
-              </button>
+              </NavDropdown.Item>
+            </NavDropdown>
             )}
-
           </div>
         </Navbar.Collapse>
       </Container>
