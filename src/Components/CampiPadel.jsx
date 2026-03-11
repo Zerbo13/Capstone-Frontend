@@ -14,12 +14,9 @@ export default function CampiPadel(){
       const[mostraAlert, setMostraAlert] = useState(false);
       const[mostraMessaggio, setMostraMessaggio] = useState(false);
   const[campoEliminato, setCampoEliminato] = useState(null);
-  const immaginiCampi = [
-    "/img/Campo1.png",
-        "/img/Campo2.png",
-            "/img/Campo3.png",
-            "/img/Campo4.png"
-  ];
+    const [fileImg, setFileImg] = useState({});
+
+ 
   const[nuovoCampo, setNuovocampo]=useState({
     nome :"",
     descrizione :"",
@@ -154,6 +151,27 @@ runFetch();
   }
 };
 
+{/*FETCH PATCH */}
+const handleUploadImg = async (id) => {
+  if(!fileImg[id]) return;
+  const formData = new FormData();
+  formData.append("immagine", fileImg[id]);
+
+  try{
+    const result = await fetch(`http://localhost:3001/campi/${id}/immagine`, {
+      method: "PATCH",
+      headers : { Authorization: `Bearer ${token}`,
+   },
+   body: formData,
+    });
+    if(!result.ok) throw new Error("Errore nell'upload dell'immagine");
+    setFileImg((prev) => ({...prev, [id] : null}));
+    runFetch();
+  }catch (err){
+    console.error(err);
+  }
+}
+
     return(
         <Container className="mt-4">
             <h1 className="text-white text-center">I nostri campi</h1>
@@ -199,10 +217,10 @@ runFetch();
              <Button variant="danger" onClick={confermaEliminazione}>Elimina</Button></Modal.Footer> 
             </Modal>
             <Row>
-        {campi.map((client, index) => (
+        {campi.map((client) => (
           <Col key={client.id} xs={12} md={6} lg={6} className="my-4">
             <Card className="h-100 shadow-sm">
-              <Card.Img variant="top" src={immaginiCampi[index % immaginiCampi.length]} style={{height:"250px", objectFit: "cover"}} />
+              <Card.Img variant="top" src={client.immagine} style={{height:"250px", objectFit: "cover"}} />
               <Card.Body>
                 <div className="d-flex justify-content-between align-items-center px-1">
   <Card.Title className="fw-bold m-0">{client.nome}</Card.Title>
@@ -243,6 +261,14 @@ runFetch();
                  <Card.Text>
                     Campo {client.attivo ? "Attivo" : "Non Attivo"}
                 </Card.Text>
+
+                {ruolo === "ADMIN" && (
+  <div className="d-flex gap-2 align-items-center mt-2 mb-4">
+    <Form.Control type="file" accept="image/*" size="sm" onChange={(e) => setFileImg((prev) => ({...prev, [client.id] : e.target.files[0]}))}/>
+    <Button className="button-log" size="sm" onClick={()=> handleUploadImg(client.id)}>Carica</Button>
+     </div>
+)}
+
                 <Link to="/prenotazioni" className="btn mt-0 button-log  text-center">Prenota questo campo </Link>
 
               </Card.Body>

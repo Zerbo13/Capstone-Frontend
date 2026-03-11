@@ -14,12 +14,9 @@ function ServiziPadel(){
   const[mostraAlert, setMostraAlert] = useState(false);
   const[mostraMessaggio, setMostraMessaggio] = useState(false);
   const[servizioEliminato, setServizioEliminato] = useState(null);
-   const immaginiServizi = [
-    "/img/Servizio1.png",
-        "/img/Servizio2.png",
-            "/img/Servizio3.png",
-            "/img/Servizio4.png"
-  ];
+  const [fileImg, setFileImg] = useState({});
+
+
   const[nuovoServizio, setNuovoServizio]=useState({
     nome :"",
     descrizione :"",
@@ -153,6 +150,27 @@ runFetch();
   }
 };
 
+{/*FETCH PATCH */}
+const handleUploadImg = async (id) => {
+  if(!fileImg[id]) return;
+  const formData = new FormData();
+  formData.append("immagine", fileImg[id]);
+
+  try{
+    const result = await fetch(`http://localhost:3001/servizi/${id}/immagine`, {
+      method: "PATCH",
+      headers : { Authorization: `Bearer ${token}`,
+   },
+   body: formData,
+    });
+    if(!result.ok) throw new Error("Errore nell'upload dell'immagine");
+    setFileImg((prev) => ({...prev, [id] : null}));
+    runFetch();
+  }catch (err){
+    console.error(err);
+  }
+}
+
 
 
     return(
@@ -183,6 +201,7 @@ runFetch();
                   <Form.Label>Durata</Form.Label>
                   <Form.Control type="text" value={nuovoServizio.durata} onChange={(e) => setNuovoServizio({...nuovoServizio, durata: e.target.value})}/>
                 </Form.Group>
+                
 
                 <Button type="submit" className="button-log">Aggiungi il nuovo servizio</Button>
               </Form>
@@ -197,12 +216,13 @@ runFetch();
              <Modal.Footer><Button variant="success" onClick={()=> setMostraMessaggio(false)}>Annulla</Button>
              <Button variant="danger" onClick={confermaEliminazione}>Elimina</Button></Modal.Footer> 
             </Modal>
+
       <Row>
-        {servizi.map((client, index) => (
+        {servizi.map((client) => (
           
           <Col key={client.id} xs={12} md={6} lg={6} className="my-4">
             <Card className="h-100 shadow-sm">
-              <Card.Img variant="top" src={immaginiServizi[index % immaginiServizi.length]} style={{height:"250px", objectFit: "cover"}} />
+              <Card.Img variant="top" src={client.immagine} style={{height:"250px", objectFit: "cover"}} />
               <Card.Body>
                 <div className="d-flex justify-content-between align-items-center px-1">
   <Card.Title className="fw-bold m-0">{client.nome}</Card.Title>
@@ -234,7 +254,15 @@ runFetch();
 <Card.Text> Prezzo: {client.prezzo} €</Card.Text>
 <Card.Text> Durata: {client.durata}</Card.Text>
 <Card.Text>Servizio {client.attivo ? "Attivo" : "Non Attivo"}</Card.Text>
-                <Link to="/prenotazioni" className="btn mt-0 button-log  text-center">Prenota questo servizio </Link>
+
+{ruolo === "ADMIN" && (
+  <div className="d-flex gap-2 align-items-center mt-2 mb-4">
+    <Form.Control type="file" accept="image/*" size="sm" onChange={(e) => setFileImg((prev) => ({...prev, [client.id] : e.target.files[0]}))}/>
+    <Button className="button-log" size="sm" onClick={()=> handleUploadImg(client.id)}>Carica</Button>
+     </div>
+)}
+
+<Link to="/prenotazioni" className="btn mt-0 button-log  text-center">Prenota questo servizio </Link>
 
               </Card.Body>
             </Card>

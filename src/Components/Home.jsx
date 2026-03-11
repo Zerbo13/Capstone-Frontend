@@ -7,13 +7,13 @@ export default function Home(){
     return(
     <div className="container mt-5 text-center">
        <h1 className="text-white mb-4">Benvenuto su Zerbo Padel!</h1>
-      <div className="mb-4"><video src="/public/video/VideoPadel.mp4" className="w-100" autoPlay loop   style={{borderRadius: "10px", maxHeight: "500px", objectFit:"cover"}}/>
+      <div className="mb-4"><video src="https://res.cloudinary.com/dbbxjymsw/video/upload/v1773218681/VideoPadel_pg44ud.mp4" className="w-100" autoPlay loop   style={{borderRadius: "10px", maxHeight: "500px", objectFit:"cover"}}/>
       </div>
             <div className="row align-items-center">
         <div className="col-md-6 text-center text-md-start">
        
            < div className="bg-white bg-opacity-10 rounded-4 p-5">
-                <img src="./public/img/img_campoLogo.png" className="img-fluid p-2 bg-light" alt="Foto padel" />
+                <img src="./img/img_campoLogo.png" className="img-fluid p-2 bg-light" alt="Foto padel" />
                 <p className="mt-3 mb-0 fs-5 text-center text-white">Prenota, gioca, divertiti.</p>
               </div>
  </div>
