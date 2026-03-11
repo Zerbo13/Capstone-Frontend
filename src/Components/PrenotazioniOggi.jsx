@@ -129,6 +129,7 @@ const cambiaGiorno = (offset) => {
         <table className="table mt-4 ">
           <thead>
             <tr>
+              <th>Utente</th>
               <th>Campo</th>
               <th>Servizio</th>
               <th>Orario</th>
@@ -140,6 +141,7 @@ const cambiaGiorno = (offset) => {
           <tbody>
             {filtraPrenotazioni.map((p) => (
               <tr key={p.id}>
+                <td>{p.utenteNome || p.utente?.nome} {p.utenteCognome || p.utente?.cognome}</td> 
                 <td>{p.campoNome || p.campo?.nome}</td>
                 <td>{p.servizioNome || p.servizio?.nome}</td>
                 <td>
