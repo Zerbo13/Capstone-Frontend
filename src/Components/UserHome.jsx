@@ -9,7 +9,7 @@ function UserHome(){
                <div className="container mt-5 text-center">
                         <h1 className="text-white mb-4">Benvenuto su Zerbo Padel!</h1>
 
-                <div className="mb-4"><video src="https://res.cloudinary.com/dbbxjymsw/video/upload/VideoPadel.mp4" className="w-100" autoPlay loop muted playsInline style={{borderRadius: "10px", maxHeight: "550px", objectFit:"cover"}}/>
+                <div className="mb-4"><video src="https://res.cloudinary.com/dbbxjymsw/video/upload/v1773218681/VideoPadel_pg44ud.mp4" className="w-100" autoPlay loop muted playsInline style={{borderRadius: "10px", maxHeight: "550px", objectFit:"cover"}}/>
       </div>
             <div className="row align-items-center">
         <div className="col-md-6 text-center text-md-start">
