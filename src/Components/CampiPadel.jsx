@@ -24,6 +24,7 @@ export default function CampiPadel(){
     tipo :"",
         coperto: false,
   });
+  
   const token = localStorage.getItem("token");
   let ruolo =null;
 
@@ -40,16 +41,16 @@ export default function CampiPadel(){
   {/*Fetch GET */}
 
   const runFetch = () => {
+    const headers = {};
+    if(token ) headers.Authorization = `Bearer ${token}`;
     fetch("http://localhost:3001/campi", {
       method: "GET",
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
+      headers: headers,
     })
       .then((response) => response.json())
       .then((data) => {
         console.log(data)
-        setCampi(data.content);
+        setCampi( data.content || []);
       })
       .catch((error) => {
         console.error("Error:", error)
@@ -269,8 +270,11 @@ const handleUploadImg = async (id) => {
      </div>
 )}
 
-                <Link to="/prenotazioni" className="btn mt-0 button-log  text-center">Prenota questo campo </Link>
-
+ { token? (
+<Link to="/prenotazioni" className="btn mt-0 button-log  text-center">Prenota questo campo </Link>
+ ) :(
+  <Link to="/register" className="btn mt-0 button-log  text-center">Prenota questo campo </Link>
+ )}
               </Card.Body>
             </Card>
           </Col>

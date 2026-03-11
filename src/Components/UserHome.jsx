@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { GiTennisCourt } from "react-icons/gi";
 import { PiTennisBallBold } from "react-icons/pi";
+import Recensioni from "./Recensioni";
 
 
 
@@ -71,6 +72,9 @@ function UserHome(){
           </div>
         </div>
       </section>
+      
+            <Recensioni/>
+      
     </div>
     )
 }

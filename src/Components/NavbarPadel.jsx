@@ -49,6 +49,8 @@ if(token){
               <>
             <Nav.Link  as={Link} to="/prenotazioni" className='text-dark'>Prenota</Nav.Link>
             <Nav.Link  as={Link} to="/prenotazioniUtente" className='text-dark'>Le mie prenotazioni</Nav.Link>
+            <Nav.Link  as={Link} to="/recensioni" className='text-dark'>Recensioni</Nav.Link>
+
             </>
             )}
              { ruolo !== "USER" && isLogged &&(

@@ -42,11 +42,11 @@ function ServiziPadel(){
   {/*Fetch GET */}
 
   const runFetch = () => {
+    const headers = {};
+    if(token ) headers.Authorization = `Bearer ${token}`;
     fetch("http://localhost:3001/servizi", {
       method: "GET",
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
+      headers: headers,
     })
       .then((response) => response.json())
       .then((data) => {
@@ -262,7 +262,11 @@ const handleUploadImg = async (id) => {
      </div>
 )}
 
+ { token? (
 <Link to="/prenotazioni" className="btn mt-0 button-log  text-center">Prenota questo servizio </Link>
+ ) :(
+  <Link to="/register" className="btn mt-0 button-log  text-center">Prenota questo servizio </Link>
+ )}
 
               </Card.Body>
             </Card>

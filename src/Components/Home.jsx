@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { PiTennisBallBold } from "react-icons/pi";
+import Recensioni from "./Recensioni";
 
 
 
@@ -72,6 +73,9 @@ export default function Home(){
           </div>
         </div>
       </section>
+
+      <Recensioni/>
+      
     </div>
     );
 }
