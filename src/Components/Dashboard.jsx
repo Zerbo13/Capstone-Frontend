@@ -148,7 +148,7 @@ return(
           <Link to="/servizi" className="card border-0 shadow-sm text-decoration-none h-100">
             <div className="card-body text-center p-4">
               <span style={{ fontSize: "2.5rem" }}>🎾</span>
-              <h6 className="fw-bold mt-2 text-dark">Campi</h6>
+              <h6 className="fw-bold mt-2 text-dark">Servizi</h6>
               <p className="text-muted small mb-0">Gestisci i servizi offerti</p>
             </div>
           </Link>

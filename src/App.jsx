@@ -17,6 +17,8 @@ import PrenotazioniOggi from "./Components/PrenotazioniOggi";
 import UtentiRgistrati from "./Components/UtentiRegistrati";
 import Dashboard from "./Components/Dashboard";
 import Recensioni from "./Components/Recensioni";
+import ProfiloUtente from "./Components/ProfiloUtente";
+
 
 
 function App() {
@@ -53,6 +55,7 @@ const visualizzaNavbar = ["/login", "/register"].includes(location.pathname);
       <Route path="/utentiRegistrati" element={ <UtentiRgistrati />}/>
       <Route path="/dashboard" element={ <Dashboard />}/>
       <Route path="/recensioni" element={ <Recensioni />}/>
+      <Route path="/profilo" element={<ProfiloUtente />}/>
 
 
 
