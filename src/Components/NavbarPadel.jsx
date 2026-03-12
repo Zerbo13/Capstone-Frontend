@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import { FaUserTie } from "react-icons/fa";
 import { useEffect, useState } from "react";
+import { IoIosArrowDropdownCircle } from "react-icons/io";
 
 
 
@@ -14,6 +15,8 @@ function NavbarPadel({isLogged, setIsLogged}) {
 
 const navigate = useNavigate();
 const [avatar, setAvatar] = useState(null);
+const [nome, setNome] = useState(null);
+const [cognome, setCognome] = useState(null);
 let ruolo = null;
 let userId = null;
 const token = localStorage.getItem("token");
@@ -21,6 +24,7 @@ const token = localStorage.getItem("token");
 if(token){
   try{
     const decoded = jwtDecode(token);
+    console.log("decoded token:", decoded);
     ruolo = decoded.ruolo;
     userId = decoded.sub;
   }catch(err){
@@ -33,8 +37,8 @@ useEffect(() => {
   fetch(`http://localhost:3001/utenti/${userId}`, {
     headers: { Authorization: `Bearer ${token}`}
   })
-  .then((result) => result.json)
-  .then((data) => setAvatar(data.avatar))
+  .then((result) => result.json())
+  .then((data) =>  {setAvatar(data.avatar); setNome(data.nome); setCognome(data.cognome); })
   .catch((error) => console.error(error));
 }, [isLogged]);
 
@@ -96,16 +100,17 @@ useEffect(() => {
 
             {/* Se loggato mostra Logout */}
             {isLogged && (
-              <NavDropdown
+              <NavDropdown 
               title={
                 <span className='d-flex align-items-center gap-2'> 
                 {avatar ? (
-                  <img src={avatar} alt="avatar" style={{width: "35 px", height:"35", borderRadius: "50%", objectFit: "cover",border:"2px solid white"}} />
+                  <img src={avatar} alt="avatar" style={{width: "45px", height:"45px", borderRadius: "50%", objectFit: "cover", border:"1px solid black"}} />
                 ) : (
                 <div style={{width: "35px", height:"35px", borderRadius: "50%", backgroundColor: "#1d548c", display: "flex", alignItems: "center", justifyContent: "center"}}>
                   <FaUserTie style={{width: "40px",height:"25px",}} />
                    </div>
                 )}
+                <span style={{color: "black", fontWeight:"500"}}>{nome} {cognome} <IoIosArrowDropdownCircle style={{color:"black"}}/></span>
                 </span>
               }
                id="user-dropdown"

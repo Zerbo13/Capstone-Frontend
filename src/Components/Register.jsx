@@ -16,28 +16,46 @@ function Register(){
 
     const[error, setError] = useState("");
     const[avatar, setAvatar] = useState(null);
-    const handleSubmit = (e) =>{
+   
+    const handleSubmit = async (e) =>{
         e.preventDefault();
-
-        fetch("http://localhost:3001/auth/register", {
+        setError("");
+        try{
+        const result = await fetch("http://localhost:3001/auth/register", {
             method: "POST",
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify(form)
-        })
-        .then(async res => {
-            if(!res.ok){
-                const err = await res.json();
-                throw new Error(err.message || "Errore nella registrazione");
-            }
-            return res.json;
-        })
-        .then(() => {
-            alert("Registrazione avvenuta con successo!");
-            navigate("/login");
-        })
-        .catch(err => {
-            setError(err.message);
         });
+        if(!result.ok){
+            const err = await result.json();
+            throw new Error(err.message || "Errore nella registrazione");
+        }
+        const utente = await result.json();
+   
+    if(avatar && utente.id){
+        const login = await fetch("http://localhost:3001/auth/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({email: form.email, password: form.password})
+      });
+      const loginData = await login.json();
+      const token = loginData.accessToken;
+
+      if(token){
+        const formData = new FormData();
+        formData.append("avatar", avatar);
+        await fetch(`http://localhost:3001/utenti/${utente.id}/avatar`, {
+            method: "PATCH",
+            headers: {Authorization: `Bearer ${token}`},
+            body: formData
+        });
+      }
+    }
+    alert("Registrazione avvenuta con successo!");
+            navigate("/login");
+        }catch(err){
+            setError(err.message);
+         }
     };
 
     return(
@@ -80,7 +98,8 @@ function Register(){
                     <input type="file" className="form-control" accept="image/*" onChange={(e) => setAvatar(e.target.files[0])} />
                 </div>
                 {avatar && (
-                    <img src={URL.createObjectURL(avatar)} alt="anteprima" style={{width: "80 px", height:"80px", borderRadius: "50%", objectFit: "cover", marginBottom: "10px"}} />
+                    /*Viene mostrata in anteprima l'avatar che verrà messo*/ 
+                    <img src={URL.createObjectURL(avatar)} alt="anteprima" style={{width: "45px", height:"45px", borderRadius: "50%", objectFit: "cover", marginBottom: "10px"}} />
                 )}
 
                     <button className="btn btn-primary w-100">Clicca per registrarti</button>

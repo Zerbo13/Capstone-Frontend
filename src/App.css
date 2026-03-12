@@ -75,3 +75,7 @@ td {
 .card-servizi {
   background-color: #0dcaf0;
 }
+
+#user-dropdown::after {
+  display: none !important;
+}
