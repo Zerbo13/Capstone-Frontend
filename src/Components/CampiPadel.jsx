@@ -262,8 +262,12 @@ const handleUploadImg = async (id) => {
                  <Card.Text>
                     Campo {client.attivo ? "Attivo" : "Non Attivo"}
                 </Card.Text>
+                <Card.Text className="mb-0">
+                    Inserisci foto del campo
+                </Card.Text>
 
                 {ruolo === "ADMIN" && (
+                  
   <div className="d-flex gap-2 align-items-center mt-2 mb-4">
     <Form.Control type="file" accept="image/*" size="sm" onChange={(e) => setFileImg((prev) => ({...prev, [client.id] : e.target.files[0]}))}/>
     <Button className="button-log" size="sm" onClick={()=> handleUploadImg(client.id)}>Carica</Button>

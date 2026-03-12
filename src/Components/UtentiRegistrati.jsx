@@ -1,12 +1,15 @@
 import { useEffect, useState } from "react";
 import { jwtDecode } from "jwt-decode";
 import { Container, Button, Modal, Alert } from "react-bootstrap";
+import { FaUserTie } from "react-icons/fa";
+
 
 export default function UtentiRegistrati() {
   const [utente, setUtente] = useState([]);
   const [mostraMessaggio, setMostraMessaggio] = useState(false);
   const [utenteEliminato, setUtentiEliminato] = useState(null);
   const [mostraAlert, setMostraAlert] = useState(false);
+  
 
   const token = localStorage.getItem("token");
 
@@ -87,9 +90,10 @@ export default function UtentiRegistrati() {
       {filtraUtenti.length === 0 ? (
         <p className="mt-3 text-white text-center fw-bold">Non sono presenti utenti.</p>
       ) : (
-        <table className="table mt-4 ">
+        <table className="table mt-4 text-center ">
           <thead>
             <tr>
+              <th>Foto profilo</th>
               <th>Nome</th>
               <th>Cognome</th>
               <th>Email</th>
@@ -103,6 +107,12 @@ export default function UtentiRegistrati() {
           <tbody>
             {filtraUtenti.map((p) => (
               <tr key={p.id}>
+                <td>{p.avatar ? (<img src={p.avatar} alt="foto profilo" style={{width: "45px", height:"45px", borderRadius: "50%", objectFit: "cover", border: "2px solid black"}} />
+                 ): (
+                  <div style={{width: "35px", height:"35px", borderRadius: "50%", backgroundColor: "#1d548c", display: "flex", alignItems: "center", justifyContent: "center"}}>
+                                    <FaUserTie style={{width: "40px",height:"25px",}} />
+                                     </div>
+                )}</td>
                 <td>{p.nome}</td>
                 <td>{p.cognome }</td>
                 <td>{p.email}</td>

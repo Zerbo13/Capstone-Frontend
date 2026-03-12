@@ -254,6 +254,7 @@ const handleUploadImg = async (id) => {
 <Card.Text> Prezzo: {client.prezzo} €</Card.Text>
 <Card.Text> Durata: {client.durata}</Card.Text>
 <Card.Text>Servizio {client.attivo ? "Attivo" : "Non Attivo"}</Card.Text>
+<Card.Text className="mb-0">Inserisci foto del servizio</Card.Text>
 
 {ruolo === "ADMIN" && (
   <div className="d-flex gap-2 align-items-center mt-2 mb-4">

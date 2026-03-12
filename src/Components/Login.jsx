@@ -122,7 +122,7 @@ export default function Login({ setIsLogged }) {
           <input className="form-control mb-2" placeholder="Inserisci la tua email" type="email" value={resetForm.email} onChange={(e) => setResetForm({...resetForm, email: e.target.value})}/>
           <input className="form-control mb-2" placeholder="Inserisci la nuova password" type="password" value={resetForm.nuovaPassword} onChange={(e) => setResetForm({...resetForm, nuovaPassword: e.target.value})}/>
           <button type="submit" className="btn button-log w-100">Aggiorna password</button> 
-          <button type="button" className="btn btn-link text-white mt-2 p-0" onClick={() => {setMostraResetForm(false); setResetError(""); setResetForm({email: "", nuovaPassword: ""});}}>Torna al login</button>
+          <button type="button" className="btn btn-link text-white mt-2 p-0" onClick={() => {setMostraResetForm(false); setResetError(""); setResetForm({email: "", nuovaPassword: ""});}}>Chiudi </button>
 
            </form>
       )}
