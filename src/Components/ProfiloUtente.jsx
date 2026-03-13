@@ -17,6 +17,7 @@ export default function ProfiloUtente(){
 
     const token = localStorage.getItem("token");
     let userId = null;
+    let ruolo = null;
     if(token){
         try{
             const decoded = jwtDecode(token);
@@ -49,6 +50,7 @@ export default function ProfiloUtente(){
         .catch(err => console.error(err))
        };
 
+       /*fetch prenotazioni get */
         const fetchPrenotazioni = () => {
         fetch(`http://localhost:3001/prenotazioni/utente/${userId}`, {
             headers: {Authorization: `Bearer ${token}`}
@@ -59,6 +61,7 @@ export default function ProfiloUtente(){
        };
 
 
+       /*fetch recensioni get */
         const fetchRecensioni = () => {
         fetch(`http://localhost:3001/recensioni`)
         .then(result => result.json())
@@ -76,6 +79,7 @@ export default function ProfiloUtente(){
         fetchRecensioni();
     }, []);
 
+    /*fetch upload avatar */
     const handleUploadAvatar = async () => {
         if(!avatar) return;
         const formData = new FormData();
@@ -95,6 +99,7 @@ export default function ProfiloUtente(){
         }
     };
 
+    /*fetch update profilo */
     const handleUpdateProfile = async (e) => {
         e.preventDefault();
         try{
@@ -129,6 +134,7 @@ export default function ProfiloUtente(){
                         <img src={utente.avatar} alt="foto profilo" style={{width: "100px", height:"100px", borderRadius: "50%", objectFit: "cover", border: "1px solid black", marginBottom: "15px"}} />
                         ) : (
                             <div className="d-inline-flex align-items-center justify-content-center rounded-circle mb-3"
+                            /*Se non si imposta una foto profilo viene impostata un'icon sempre stile foto profilo uguale per tutti */
                                 style={{width: "100px", height:"100px", borderRadius: "50%", backgroundColor: "#1d548c", fontSize: "3rem"}}>
                                  <FaUserTie style={{width: "40px",height:"25px",}} />
                             </div>
@@ -171,6 +177,8 @@ export default function ProfiloUtente(){
                 </div>
 
                 {/*Prenotazioni dell'utente */}
+                {ruolo === "USER" &&(
+                    <>
                 <h3 className="fw-bold mb-3 text-center mt-3">Le mie prenotazioni</h3>
                 {prenotazioni.length === 0 ? (
                    <p className="text-center"> Nessuna prenotazione fatta. È il momento di farne una! </p>
@@ -187,7 +195,11 @@ export default function ProfiloUtente(){
                         ))}
                     </div>
                            )}
+                           </>
+                        )}
                 {/*Recensioni dell'utente */}
+                {ruolo === "USER" &&(
+                    <>
                 <h3 className="fw-bold mb-3 text-center mt-3">Le mie recensioni</h3>
                 {recensioni.length === 0 ? (
                    <p className="text-center"> Nessuna recensione fatta. Lascia la tua prima recensione! </p>
@@ -204,6 +216,8 @@ export default function ProfiloUtente(){
                         ))}
                     </div>
                            )}
+                              </>
+                        )}
             </div>
         </div>
 

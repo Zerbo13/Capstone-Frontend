@@ -83,6 +83,8 @@ export default function AllPrenotazioni() {
       {prenotazioni.length === 0 ? (
         <p className="mt-3 text-white text-center fw-bold">Non sono presenti prenotazioni.</p>
       ) : (
+
+        /*Tabella per visualizzare tutte le prenotazioni parte admin */
         <table className="table mt-4 ">
           <thead>
             <tr>

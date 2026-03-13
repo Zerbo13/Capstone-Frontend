@@ -176,6 +176,8 @@ function PrenotaPadel(){
             {orari.map((slot, index) => (
                 <div key={index} className="col-4 mb-3"> 
                 <div className="p-3 border rounded-5 text-center"
+                /*VENGONO MOSTRATI GLI ORARI DISPONIBILI, SE UN ORARIO è STATO PRENOTATO IN UN CAMPO (ES. CAMPO 1 ORA 8:00 - 9:30),
+                 GLI ORARI CHE SI TROVANO IN MEZZO A QUEL CAMPO NON VENGONO MOSTRATI (ES. CAMPO 1 ORA 8:30 - 10:00, CAMPO 1 ORA 9:00 10:30 ECC.) */
                 style={{
                     cursor : "pointer",
                     backgroundColor: form.oraInizio === slot.inizio ? "#007bff" : "#266F44",

@@ -176,6 +176,7 @@ const handleUploadImg = async (id) => {
     return(
         <Container className="mt-4">
             <h1 className="text-white text-center">I nostri campi</h1>
+             {/*Form creazione campo solo l'admin lo può fare  */}
             {ruolo === "ADMIN" && (<Button className="button-log mt-3" onClick={() => setvisualizzaForm(!visualizzaForm)}>{visualizzaForm? "Chiudi il form" : "Aggiungi un nuovo campo"}</Button>)}
             {mostraAlert && ( <Alert variant="success" className="mt-3">Campo creato correttamente!</Alert>)}
             {visualizzaForm && (
@@ -209,6 +210,7 @@ const handleUploadImg = async (id) => {
                 <Button type="submit" className="button-log">Aggiungi il nuovo servizio</Button>
               </Form>
             )}
+            {/*Modale eliminazione campo solo l'admin lo può eliminare  */}
             <Modal show={mostraMessaggio} onHide={() => setMostraMessaggio(false)} centered>
               <Modal.Header closeButton>
                 <Modal.Title>Conferma l'eliminazione del campo!</Modal.Title>
@@ -244,6 +246,7 @@ const handleUploadImg = async (id) => {
       size="sm"
       onClick={() => handleAttivo(client.id, client.attivo)}
     >
+       {/*Attvivazione e disattivazione di un campo solo l'admin lo può fare  */}
       {client.attivo ? "Disattiva" : "Attiva"}
     </Button>
   </div>

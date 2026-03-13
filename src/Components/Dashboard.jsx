@@ -60,6 +60,7 @@ return(
   <div className="container py-5">
   <h2 className="fw-bold mb-4 text-white text-center">Benvenuto nella dashboard dell'admin!</h2>
   <div className="row g-4 mb-5">
+    {/*L'admin controlla il numero e di UTENTE REGISTRATI, PRENOTAZIONI PER OGGI, PRENOTAZIONI IN TOTALE,CAMPI E SERVIZI */}
     <div className="col-md-6 col-lg-4">
           <div className="card card-utenti border-0 shadow-sm text-white">
                 <div className="card-body text-center p-4">
@@ -102,6 +103,7 @@ return(
     </div>
   </div>
 
+{/*Qui cliccando sulla card si trova direttamente sulla pagina scelta tramite il link */}
    <h4 className="fw-bold mb-3 text-white">Monitora il tuo sito</h4>
    <h6 className="fw-bold mb-3 text-white">Scegli quale attività gestire!</h6>
       <div className="row g-4">

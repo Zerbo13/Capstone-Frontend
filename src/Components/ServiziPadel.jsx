@@ -175,6 +175,7 @@ const handleUploadImg = async (id) => {
 
     return(
         <Container className="mt-4">
+            {/*Form creazione campo solo l'admin lo può fare  */}
             <h1 className="text-white text-center">I nostri servizi </h1>
             {ruolo === "ADMIN" && (<Button className="button-log mt-3" onClick={() => setvisualizzaForm(!visualizzaForm)}>{visualizzaForm? "Chiudi il form" : "Aggiungi un nuovo servizio"}</Button>)}
             {mostraAlert && ( <Alert variant="success" className="mt-3">Servizio creato correttamente!</Alert>)}
@@ -240,6 +241,7 @@ const handleUploadImg = async (id) => {
 
 {ruolo === "ADMIN" && (
   <div className="d-flex justify-content-end px-1 mt-1">
+    {/*Attvivazione e disattivazione di un campo solo l'admin lo può fare  */}
     <Button
       variant={client.attivo ? "warning" : "success"}
       size="sm"

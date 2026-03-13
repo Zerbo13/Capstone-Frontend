@@ -83,13 +83,14 @@ export default function UtentiRegistrati() {
 
       {mostraAlert && (
         <Alert variant="success" className="mt-3">
-          Utente eliminata correttamente!
+          Utente eliminato correttamente!
         </Alert>
       )}
 
       {filtraUtenti.length === 0 ? (
         <p className="mt-3 text-white text-center fw-bold">Non sono presenti utenti.</p>
       ) : (
+        /*Vengono mostrati gli utenti registarti nell'app all'admin tramite una tabella */
         <table className="table mt-4 text-center ">
           <thead>
             <tr>

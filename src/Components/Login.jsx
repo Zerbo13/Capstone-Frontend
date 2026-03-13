@@ -115,6 +115,7 @@ export default function Login({ setIsLogged }) {
         </Link>
       </form>
 
+      {/*Form per il reset della password nel login se non ci si ricorda la password per fare l'accesso (fatto con sendgrid) */}
       {mostraResetForm && (
         <form onSubmit={handleResetPassword} className="mt-3">
           {resetError && <div className="alert alert-danger">{resetError}</div> }

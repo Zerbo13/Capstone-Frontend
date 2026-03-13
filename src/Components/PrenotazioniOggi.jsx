@@ -112,7 +112,8 @@ const cambiaGiorno = (offset) => {
     <Container className="mt-4">
          <div className="d-flex align-items-center gap-3 mb-3">
         <Button className="button-log" onClick={() => cambiaGiorno(-1)}>Precedente</Button>
-    
+    {/*Con questi button si puo scelgliere il giorno per vedere le prenotazioni se il giorno precedente o successivo, 
+    oppure per oggi con data scritto sopra */}
       <h2 className="text-white mb-0 text-capitalize flex-grow-1 text-center">Tutte le prenotazioni di {dataTitolo()}</h2>
               <Button className="button-log" onClick={() => cambiaGiorno(1)}>Successivo</Button>
              

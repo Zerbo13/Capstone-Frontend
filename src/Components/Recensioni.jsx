@@ -70,6 +70,8 @@ export default function Recensioni(){
       .catch((err) => console.error(err));
       };
 
+      {/*Con queste stelle svg si possono passare sopra e riempire cliccandole
+        fatto in css e html e riadatto in js */}
       const StarSvg = ({filled}) => {
         return(
         <svg style={{ fill: filled ? "#d8b400" : "white", cursor: "pointer", transition: "fill 0.2s" }}
@@ -132,6 +134,7 @@ export default function Recensioni(){
             <p className="text-center text-white">Nessuna recensione ancora prensente! Aggiungila tu per primo </p>
         ): (
           <div>
+            {/*Recensioni mostrate con una card */}
             <h1 className="text-center fw-bold mb-5">Recensioni di chi ci ha scelto!</h1>
             <div className="row g-4 justify-content-center">
                 {recensioni.map((r) => (

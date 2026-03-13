@@ -12,6 +12,8 @@ function AdminHome(){
            <h5 className="text-white mb-5">Cosa vuoi monitorare del tuo circolo?</h5>
         <Link to="/dashboard" className="btn mt-4 mb-5 button-log ">Clicca per monitorare tutte le azioni del circolo </Link>
 
+         {/*SEZIONE PER IL CONTROLLO VELOCE DELLE ATTVITA' NELLA PAGINA HOME DELL'ADMIN*/}
+
         <div  className="bg-white bg-opacity-10 rounded-4 p-5">
         <h4 className="fw-bold mb-0  text-white">Gestione veloce</h4>
       <div className="row g-4 p-5">
