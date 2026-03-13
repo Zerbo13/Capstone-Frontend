@@ -8,6 +8,7 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 import { FaUserTie } from "react-icons/fa";
 import { useEffect, useState } from "react";
 import { IoIosArrowDropdownCircle } from "react-icons/io";
+import { Modal, Button } from "react-bootstrap";
 
 
 
@@ -17,6 +18,8 @@ const navigate = useNavigate();
 const [avatar, setAvatar] = useState(null);
 const [nome, setNome] = useState(null);
 const [cognome, setCognome] = useState(null);
+const[mostraMessaggio, setMostraMessaggio] = useState(false);
+
 let ruolo = null;
 let userId = null;
 const token = localStorage.getItem("token");
@@ -45,6 +48,7 @@ useEffect(() => {
 
   const linkHome = ruolo === "ADMIN" ? "/admin" : ruolo === "USER" ? "/user" : "/home";
 
+  {/*Logout */}
   const handleLogout = () => {
     localStorage.removeItem("token");
     setIsLogged(false);
@@ -119,15 +123,26 @@ useEffect(() => {
                align="end">
                 <NavDropdown.Item as={Link} to="/profilo" className='text-center'>Il mio profilo</NavDropdown.Item>
               <NavDropdown.Divider />
-              <NavDropdown.Item onClick={handleLogout} className='text-center text-danger'>
+              <NavDropdown.Item onClick={() => setMostraMessaggio(true)} className='text-center text-danger'>
                 Logout
               </NavDropdown.Item>
+              {/* MODALE LOGOUT */}
+                          <Modal show={mostraMessaggio} onHide={() => setMostraMessaggio(false)} centered>
+                            <Modal.Header closeButton>
+                              <Modal.Title className='text-center'>Logout</Modal.Title>
+                            </Modal.Header>
+                            <Modal.Body className='text-center'>Sei sicuro di voler fare il uscire dal sito?</Modal.Body>
+                           <Modal.Footer><Button variant="success" onClick={()=> setMostraMessaggio(false)}>Annulla</Button>
+                           <Button variant="danger" onClick={handleLogout}>Logout</Button></Modal.Footer> 
+                          </Modal>
             </NavDropdown>
             )}
           </div>
         </Navbar.Collapse>
       </Container>
     </Navbar>
+
+    
   );
 }
 
