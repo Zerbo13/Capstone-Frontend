@@ -115,35 +115,18 @@ export default function CampiPadel(){
     .catch((err) => console.error(err));
   };
 
-{/*Fetch PUT */}
-const getCampoId = async(id)=>{
-  const result = await fetch(`http://localhost:3001/campi/${id}`, {
-      headers: {
-        Authorization: `Bearer ${token}`},
-      });
-      return result.json();
-    }
   
 
 const handleAttivo = async(id, stato) =>{
 
   try{
-    const campo= await getCampoId(id);
-    const payload ={
-      nome : campo.nome,
-      descrizione: campo.descrizione,
-      coperto: campo.coperto,
-      prezzoOra: campo.prezzoOra,
-      tipo: campo.tipo,
-      attivo: !stato,
-    };
-    const result = await fetch(`http://localhost:3001/campi/${id}`, {
-method : "PUT",
+    const result = await fetch(`http://localhost:3001/campi/${id}/attivo`, {
+method : "PATCH",
 headers: {
   "Content-Type" : "application/json",
    Authorization: `Bearer ${token}`,
    },
-    body: JSON.stringify(payload),
+    body: JSON.stringify({attivo: !stato,}),
 });
 if(!result.ok) throw new Error("Errore nella modifica dello stato nel campo");
 runFetch();
