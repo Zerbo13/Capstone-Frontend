@@ -1,13 +1,15 @@
 import {useState, useEffect} from "react";
-import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router";
 
 
 function PrenotaPadel(){
     const[campi, setCampi] = useState([]);
     const[servizi, setServizi] = useState([]);
     const[orari, setOrari] = useState([]);
-    const navigate = useNavigate();
+    const[metodoPagamento, setMetodoPagamento] = useState("online");
+        const navigate = useNavigate();
+
    
     const[form, setForm] = useState({
         campoId: "",
@@ -87,41 +89,48 @@ function PrenotaPadel(){
        }, [form.data, form.campoId]);
 
 
-    const handleSubmit = (e) =>{
+    const handleSubmit = async (e) =>{
         e.preventDefault();
-
-        fetch("http://localhost:3001/prenotazioni", {
+        setError("");
+        if(!form.campoId){setError("Seleziona un campo"); return;}
+        if(!form.servizioId){setError("Seleziona un servizio"); return;}
+        if(!form.data){setError("Seleziona una data"); return;}
+        if(!form.oraInizio){setError("Seleziona un'ora di inizio"); return;}
+        try{
+        const result = await fetch("http://localhost:3001/prenotazioni", {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
-              Authorization: `Bearer ${localStorage.getItem("token")}`
+              Authorization: `Bearer ${token}`
             },
-            body: JSON.stringify(form)
-        })
-        .then(async res => {
-            if(!res.ok){
-                const err = await res.json();
+            body: JSON.stringify({...form, campoId: Number(form.campoId), servizioId: Number(form.servizioId)
+            })
+        });
+            if(!result.ok){
+                const err = await result.json();
                 throw new Error(err.message || "Errore nella prenotazione");
             }
-            return res.json();
-        })
-        .then(() => {
-            alert("Prenotazione avvenuta con successo!");
-          setForm({
-            campoId: "",
-            servizioId: "",
-            data:"",
-            oraInizio:"",
-            OraFine:"",
-            note:"",
-          })
-          
-          navigate("/prenotazioneUtente");
+            if(metodoPagamento == "online"){
+            const servizioSelezionato = servizi.find(s => String(s.id) === String(form.servizioId));
+            const nomeServizio = servizioSelezionato ? servizioSelezionato.nome : "Prenotazione padel";
+            const prezzo = servizioSelezionato ? servizioSelezionato.prezzo : 10;
 
-        })
-        .catch(err => {
-            setError(err.message);
+            const stripeResult = await fetch("http://localhost:3001/pagamenti/checkout", {
+                method: "POST",
+                headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${token}`
+            },
+            body: JSON.stringify({nomeServizio: nomeServizio, prezzo: prezzo})
         });
+        const stripeData = await stripeResult.json();
+        window.location.href = stripeData.url;
+    }else{alert("Prenotazione confermata! Ricordati di pagare al centro quando vieni a giocare!");
+        navigate("/prenotazioneUtente");
+    }
+    }catch(err ){
+            setError(err.message);
+    }
     };
 
     return(
@@ -196,7 +205,12 @@ function PrenotaPadel(){
         {/*Note */}
         <label className="text-white fw-bold fs-5">Note </label>
         <textarea className="form-control mb-3 "   value={form.note} placeholder="Aggiungi cosa ti serve per rendere la tua partita perfetta!" onChange={(e) => setForm({...form, note: e.target.value})}/>
-            <button as={Link} to="/prenotazioniUtente" type="submit" className="btn button-log w-25 mt-3 mb-5">Invia Prenotazione</button>
+            <label className="text-white fw-bold fs-5 mt-3">Scegli il metodo di pagamento</label>
+            <div className="d-flex gap-4 mt-2 mb-3">
+                <div className="p-3 border rounded-4 text-center" style={{cursor: "pointer", flex:1, backgroundColor: metodoPagamento === "online" ? "#007bff" : "#266F44", color: "white"}} onClick={() => setMetodoPagamento("online")}>Paga ora oline</div>
+                <div className="p-3 border rounded-4 text-center" style={{cursor: "pointer", flex:1, backgroundColor: metodoPagamento === "contanti" ? "#007bff" : "#266F44", color: "white"}} onClick={() => setMetodoPagamento("contanti")}>Paga al centro</div>
+            </div>
+            <button as={Link} to="/prenotazioniUtente" type="submit" className="btn button-log w-25 mt-3 mb-5">Conferma la prenotazione</button>
          </form>
          </div>  
          </div>

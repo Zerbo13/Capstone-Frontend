@@ -18,6 +18,8 @@ import UtentiRgistrati from "./Components/UtentiRegistrati";
 import Dashboard from "./Components/Dashboard";
 import Recensioni from "./Components/Recensioni";
 import ProfiloUtente from "./Components/ProfiloUtente";
+import PagamentoRiuscito from "./Components/PagamentoRiuscito";
+import PagamentoStornato from "./Components/PagamentoStornato";
 
 
 
@@ -58,6 +60,8 @@ const visualizzaNavbar = ["/login", "/register"].includes(location.pathname);
       <Route path="/profilo" element={<ProfiloUtente />}/>
 
 
+      <Route path="/pagamentoRiuscito" element={<PagamentoRiuscito />} />
+      <Route path="/pagaemntoStornato" element={<PagamentoStornato />} />
 
 
 
