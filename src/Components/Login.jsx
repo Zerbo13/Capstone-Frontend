@@ -87,7 +87,7 @@ export default function Login({ setIsLogged }) {
         <input
           className="form-control mb-2"
           value={form.email}
-          placeholder="Email"
+          placeholder="example@gmail.com"
           type="email"
           onChange={(e) => setForm({ ...form, email: e.target.value })}
         />

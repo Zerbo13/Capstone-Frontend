@@ -159,6 +159,8 @@ const handleUploadImg = async (id) => {
     return(
         <Container className="mt-4">
             <h1 className="text-white text-center">I nostri campi</h1>
+            <p className="text-white mt-4 mb-3"  style={{textAlign: "justify"}}>I nostri campi da padel sono progettati per offrire un’esperienza di gioco piacevole e accessibile a tutti, dai principianti agli appassionati più esperti. Le strutture sono curate e mantenute per garantire comfort, sicurezza e qualità durante ogni partita. Che tu preferisca giocare in un campo coperto o all’aria aperta, troverai spazi adatti per divertirti, allenarti e condividere momenti di sport con amici o compagni di squadra. Scegli il campo che preferisci e preparati a vivere una partita all’insegna del gioco e del divertimento.
+</p><br />
              {/*Form creazione campo solo l'admin lo può fare  */}
             {ruolo === "ADMIN" && (<Button className="button-log mt-3" onClick={() => setvisualizzaForm(!visualizzaForm)}>{visualizzaForm? "Chiudi il form" : "Aggiungi un nuovo campo"}</Button>)}
             {mostraAlert && ( <Alert variant="success" className="mt-3">Campo creato correttamente!</Alert>)}
@@ -248,9 +250,11 @@ const handleUploadImg = async (id) => {
                  <Card.Text>
                     Campo {client.attivo ? "Attivo" : "Non Attivo"}
                 </Card.Text>
+                {ruolo === "ADMIN" && (
                 <Card.Text className="mb-0">
                     Inserisci foto del campo
                 </Card.Text>
+                )}
 
                 {ruolo === "ADMIN" && (
                   

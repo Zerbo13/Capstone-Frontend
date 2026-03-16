@@ -140,10 +140,10 @@ export default function ProfiloUtente(){
                             </div>
                         )}
 
-                        <h5 className="fw-bold mt-2">{utente.nome} {utente.cognome}</h5>
-                        <p className="mb-1"> {utente.email}</p>
-                        <p className="mb-1"> {utente.telefono}</p>
-                        <p className="mb-1"> {utente.dataNascita}</p>
+                        <h5 className=" mt-2">Nome e Cognome: {utente.nome} {utente.cognome}</h5>
+                        <h5 className="mb-1">Email: {utente.email}</h5>
+                        <h5 className="mb-1">Telefono: {utente.telefono}</h5>
+                        <h5 className="mb-2">Data di nascita: {utente.dataNascita}</h5>
 
                         <Button className="button-log mb-3" onClick={() => setVisualizzaForm(!visualizzaForm)}>{visualizzaForm ? "Torna indietro" : "Modifica i tuoi dati"}</Button>
 

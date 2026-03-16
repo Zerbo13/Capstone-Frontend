@@ -141,8 +141,10 @@ export default function Recensioni(){
                 <div key={r.id} className="col-12 col-md-4">
               <div className="card h-100 border-0 shadow-sm text-center p-4">
                 <div className="card-body">
-                  <div className=" rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style={{ width: '60px', height: '60px', backgroundColor: '#1d548c' }}>
-                    <span style={{ fontSize: '2.5rem' }}>👤</span>
+                  <div className=" rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style={{ width: '60px', height: '60px', backgroundColor: '#1d548c', overflow: 'hidden' }}>
+                    {r.utente?.avatar ? (
+                      <img src={r.utente.avatar} alt="foto profilo" style={{width: '60px', height: '60px', objectFit: 'cover', borderRadius: '50%'}} />
+                    ): (<span style={{ fontSize: '2.5rem' }}>👤</span>)}
                   </div>
                   <h5 className="fw-bold">{r.utente?.nome} {r.utente?.cognome}</h5>
                   <div className="mb-2">{renderStelle(r.stelle)}</div>

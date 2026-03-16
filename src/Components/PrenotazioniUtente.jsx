@@ -85,6 +85,7 @@ export default function PrenotazioniUtente() {
               <th>Data</th>
               <th>Orario</th>
               <th>Note</th>
+              <th>Pagamento</th>
               <th></th>
             </tr>
           </thead>
@@ -99,6 +100,10 @@ export default function PrenotazioniUtente() {
                   {p.oraInizio} - {p.oraFine}
                 </td>
                 <td>{p.note}</td>
+                <td>{p.metodoPagamento == "Online" ? (<span className="badge bg-success">Online</span>) : 
+                p.metodoPagamento == "Contanti" ? (
+                  <span className="badge bg-primary">Contanti</span>
+                ) : ( <span className="badge bg-secondary"> Pagamento non effettuato</span>)}</td>
                 <td>
                   <Button
                     variant="danger"

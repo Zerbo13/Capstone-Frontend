@@ -136,6 +136,7 @@ const cambiaGiorno = (offset) => {
               <th>Orario</th>
               <th>Note</th>
               <th>Pagamento</th>
+              <th></th>
             </tr>
           </thead>
 

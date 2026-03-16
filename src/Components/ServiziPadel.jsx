@@ -177,6 +177,8 @@ const handleUploadImg = async (id) => {
         <Container className="mt-4">
             {/*Form creazione campo solo l'admin lo può fare  */}
             <h1 className="text-white text-center">I nostri servizi </h1>
+             <p className="text-white mt-4 mb-3" style={{textAlign: "justify"}}>I nostri servizi sono pensati per rendere la tua esperienza sui campi ancora più completa e coinvolgente. Oltre alla possibilità di prenotare il campo con diverse durate di gioco, offriamo anche opportunità per migliorare le tue abilità grazie a sessioni di allenamento dedicate e momenti di gioco organizzato. Durante l’anno vengono inoltre proposti tornei e attività pensate per chi ama mettersi alla prova, conoscere nuovi giocatori e vivere il padel in modo ancora più dinamico. Che tu voglia giocare una partita tra amici, allenarti o partecipare a una competizione, troverai il servizio giusto per vivere al meglio ogni momento in campo.
+</p><br />
             {ruolo === "ADMIN" && (<Button className="button-log mt-3" onClick={() => setvisualizzaForm(!visualizzaForm)}>{visualizzaForm? "Chiudi il form" : "Aggiungi un nuovo servizio"}</Button>)}
             {mostraAlert && ( <Alert variant="success" className="mt-3">Servizio creato correttamente!</Alert>)}
             {visualizzaForm && (
@@ -256,7 +258,9 @@ const handleUploadImg = async (id) => {
 <Card.Text> Prezzo: {client.prezzo} €</Card.Text>
 <Card.Text> Durata: {client.durata}</Card.Text>
 <Card.Text>Servizio {client.attivo ? "Attivo" : "Non Attivo"}</Card.Text>
+{ruolo === "ADMIN" && (
 <Card.Text className="mb-0">Inserisci foto del servizio</Card.Text>
+)}
 
 {ruolo === "ADMIN" && (
   <div className="d-flex gap-2 align-items-center mt-2 mb-4">

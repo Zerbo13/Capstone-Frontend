@@ -95,6 +95,7 @@ export default function AllPrenotazioni() {
               <th>Orario</th>
               <th>Note</th>
               <th>Pagamento</th>
+              <th></th>
             </tr>
           </thead>
 

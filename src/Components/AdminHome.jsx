@@ -10,7 +10,7 @@ function AdminHome(){
         <h1 className="text-white mb-4">Benvenuto nella sezione admin di Zerbo Padel!</h1>
                 <h3 className="text-white mt-5">Benvenuto Admin!</h3>
            <h5 className="text-white mb-5">Cosa vuoi monitorare del tuo circolo?</h5>
-        <Link to="/dashboard" className="btn mt-4 mb-5 button-log ">Clicca per monitorare tutte le azioni del circolo </Link>
+        <Link to="/dashboard" className="btn mt-4 mb-5 button-log ">Clicca qui per monitorare tutte le azioni del circolo </Link>
 
          {/*SEZIONE PER IL CONTROLLO VELOCE DELLE ATTVITA' NELLA PAGINA HOME DELL'ADMIN*/}
 

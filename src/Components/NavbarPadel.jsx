@@ -9,6 +9,9 @@ import { FaUserTie } from "react-icons/fa";
 import { useEffect, useState } from "react";
 import { IoIosArrowDropdownCircle } from "react-icons/io";
 import { Modal, Button } from "react-bootstrap";
+import { FaUser } from "react-icons/fa";
+import { LuSquareArrowLeft } from "react-icons/lu";
+
 
 
 
@@ -121,17 +124,18 @@ useEffect(() => {
               }
                id="user-dropdown"
                align="end">
-                <NavDropdown.Item as={Link} to="/profilo" className='text-center'>Il mio profilo</NavDropdown.Item>
+                <NavDropdown.Item as={Link} to="/profilo" className='text-center'><FaUser /> Account
+</NavDropdown.Item>
               <NavDropdown.Divider />
               <NavDropdown.Item onClick={() => setMostraMessaggio(true)} className='text-center text-danger'>
-                Logout
+                <LuSquareArrowLeft /> Logout
               </NavDropdown.Item>
               {/* MODALE LOGOUT */}
                           <Modal show={mostraMessaggio} onHide={() => setMostraMessaggio(false)} centered>
                             <Modal.Header closeButton>
                               <Modal.Title className='text-center'>Logout</Modal.Title>
                             </Modal.Header>
-                            <Modal.Body className='text-center'>Sei sicuro di voler fare il uscire dal sito?</Modal.Body>
+                            <Modal.Body className='text-center'>Sei sicuro di voler uscire dal sito?</Modal.Body>
                            <Modal.Footer><Button variant="success" onClick={()=> setMostraMessaggio(false)}>Annulla</Button>
                            <Button variant="danger" onClick={handleLogout}>Logout</Button></Modal.Footer> 
                           </Modal>
