@@ -94,7 +94,7 @@ export default function AllPrenotazioni() {
               <th>Data</th>
               <th>Orario</th>
               <th>Note</th>
-              <th></th>
+              <th>Pagamento</th>
             </tr>
           </thead>
 
@@ -109,6 +109,10 @@ export default function AllPrenotazioni() {
                   {p.oraInizio} - {p.oraFine}
                 </td>
                 <td>{p.note}</td>
+                <td>{p.metodoPagamento == "Online" ? (<span className="badge bg-success">Online</span>) : 
+                p.metodoPagamento == "Contanti" ? (
+                  <span className="badge bg-primary">Contanti</span>
+                ) : ( <span className="badge bg-secondary"> Pagamento non effettuato</span>)}</td>
                 <td>
                   <Button
                     variant="danger"

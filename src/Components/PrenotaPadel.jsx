@@ -1,6 +1,14 @@
 import {useState, useEffect} from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router";
+import { FaCreditCard } from "react-icons/fa";
+import { GiMoneyStack } from "react-icons/gi";
+import { GiTennisCourt } from "react-icons/gi";
+import { FaPeopleRobbery } from "react-icons/fa6";
+import { FaCalendarAlt } from "react-icons/fa";
+import { FaRegClock } from "react-icons/fa";
+import { LuNotebookPen } from "react-icons/lu";
+
 
 
 function PrenotaPadel(){
@@ -75,7 +83,11 @@ function PrenotaPadel(){
       //Slot orari
        useEffect(() => {
         if(!form.data || !form.campoId) return;
-        fetch(`http://localhost:3001/campi/${form.campoId}/orari?data=${form.data}`, {
+        const servizioSelezionato = servizi.find(s => String(s.id) === String(form.servizioId));
+        const durata = servizioSelezionato ? servizioSelezionato.durata : "01:30:00";
+        const parti = durata.split(":");
+        const durataInMinuti = parseInt(parti[0]) * 60 + parseInt(parti[1]);
+        fetch(`http://localhost:3001/campi/${form.campoId}/orari?data=${form.data}&durata=${durataInMinuti}`, {
             headers: { 
                 Authorization: `Bearer ${localStorage.getItem("token")}`
         }})
@@ -86,7 +98,7 @@ function PrenotaPadel(){
         console.log("CAMPI DAL BACKEND:", data);
         setOrari(data)})
         .catch(err => console.error(err));
-       }, [form.data, form.campoId]);
+       }, [form.data, form.campoId, form.servizioId]);
 
 
     const handleSubmit = async (e) =>{
@@ -103,7 +115,7 @@ function PrenotaPadel(){
               "Content-Type": "application/json",
               Authorization: `Bearer ${token}`
             },
-            body: JSON.stringify({...form, campoId: Number(form.campoId), servizioId: Number(form.servizioId)
+            body: JSON.stringify({...form, campoId: Number(form.campoId), servizioId: Number(form.servizioId), metodoPagamento : metodoPagamento === "online" ? "Online" : "Contanti"
             })
         });
             if(!result.ok){
@@ -144,7 +156,7 @@ function PrenotaPadel(){
 
 
            {/*Servizio */}
-           <label className="mt-3 text-white fw-bold fs-5">Scelgi un servizio</label>
+           <label className="mt-3 text-white fw-bold fs-5">Scelgi un servizio <FaPeopleRobbery /></label>
            <select className="form-control mb-3"
            value={form.servizioId}
            onChange={(e) => setForm({ ...form, servizioId : e.target.value})}>
@@ -157,7 +169,7 @@ function PrenotaPadel(){
            </select>
 
             {/*Campo */}
-           <label className="mt-3 text-white fw-bold fs-5">Scelgi un campo</label>
+           <label className="mt-3 text-white fw-bold fs-5">Scelgi un campo <GiTennisCourt /></label>
            <select className="form-control mb-3"
              value={form.campoId}
            onChange={(e) => setForm({ ...form, campoId : e.target.value})}>
@@ -171,7 +183,7 @@ function PrenotaPadel(){
 
 
            {/*Data */}
-           <label className="mt-3 text-white fw-bold fs-5">Scelgi un data</label>
+           <label className="mt-3 text-white fw-bold fs-5">Scelgi un data <FaCalendarAlt /></label>
            <input type="date" className="form-control mb-3"
              value={form.data} 
              onChange={(e) => setForm({ ...form, data : e.target.value})}  />
@@ -180,7 +192,7 @@ function PrenotaPadel(){
             {/*Orari */}
             {orari.length > 0 &&(
                 <>
-           <label className="mt-3 text-white fw-bold fs-5">Scelgi un orario</label>
+           <label className="mt-3 text-white fw-bold fs-5">Scelgi un orario <FaRegClock /></label>
            <div className="row mt-2">
             {orari.map((slot, index) => (
                 <div key={index} className="col-4 mb-3"> 
@@ -203,12 +215,14 @@ function PrenotaPadel(){
         )}
 
         {/*Note */}
-        <label className="text-white fw-bold fs-5">Note </label>
+        <label className="text-white fw-bold fs-5">Note <LuNotebookPen /></label>
         <textarea className="form-control mb-3 "   value={form.note} placeholder="Aggiungi cosa ti serve per rendere la tua partita perfetta!" onChange={(e) => setForm({...form, note: e.target.value})}/>
+           {/*Si sceglie il metodo di pagamento */}
             <label className="text-white fw-bold fs-5 mt-3">Scegli il metodo di pagamento</label>
             <div className="d-flex gap-4 mt-2 mb-3">
-                <div className="p-3 border rounded-4 text-center" style={{cursor: "pointer", flex:1, backgroundColor: metodoPagamento === "online" ? "#007bff" : "#266F44", color: "white"}} onClick={() => setMetodoPagamento("online")}>Paga ora oline</div>
-                <div className="p-3 border rounded-4 text-center" style={{cursor: "pointer", flex:1, backgroundColor: metodoPagamento === "contanti" ? "#007bff" : "#266F44", color: "white"}} onClick={() => setMetodoPagamento("contanti")}>Paga al centro</div>
+                <div className="p-3 border rounded-4 text-center" style={{cursor: "pointer", flex:1, backgroundColor: metodoPagamento === "online" ? "#007bff" : "#266F44", color: "white"}} onClick={() => setMetodoPagamento("online")}>Paga ora oline <FaCreditCard /></div>
+                <div className="p-3 border rounded-4 text-center" style={{cursor: "pointer", flex:1, backgroundColor: metodoPagamento === "contanti" ? "#007bff" : "#266F44", color: "white"}} onClick={() => setMetodoPagamento("contanti")}>Paga al centro <GiMoneyStack />
+</div>
             </div>
             <button as={Link} to="/prenotazioniUtente" type="submit" className="btn button-log w-25 mt-3 mb-5">Conferma la prenotazione</button>
          </form>
