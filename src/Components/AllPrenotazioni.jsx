@@ -24,7 +24,7 @@ export default function AllPrenotazioni() {
 
   // FETCH GET PRENOTAZIONI
   const runFetch = () => {
-    fetch(`http://localhost:3001/prenotazioni`, {
+    fetch(`http://unable-kalie-mattiazerbini-d54da76b.koyeb.app/prenotazioni`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -54,7 +54,7 @@ export default function AllPrenotazioni() {
 
   // CONFERMA ELIMINAZIONE
   const confermaEliminazione = () => {
-    fetch(`http://localhost:3001/prenotazioni/${prenotazioneEliminata}`, {
+    fetch(`http://unable-kalie-mattiazerbini-d54da76b.koyeb.app/prenotazioni/${prenotazioneEliminata}`, {
       method: "DELETE",
       headers: {
         Authorization: `Bearer ${token}`,

@@ -33,7 +33,7 @@ function PrenotaPadel(){
 
     //Campi
     useEffect(() => {
-     fetch("http://localhost:3001/campi", { 
+     fetch("http://unable-kalie-mattiazerbini-d54da76b.koyeb.app/campi", { 
      headers: {Authorization: `Bearer ${token}`}
     })
       .then(response => {
@@ -58,7 +58,7 @@ function PrenotaPadel(){
       //Servizi
        useEffect(() => {
         console.log("TOKEN:", localStorage.getItem("token"));
-     fetch("http://localhost:3001/servizi", {
+     fetch("http://unable-kalie-mattiazerbini-d54da76b.koyeb.app/servizi", {
       headers: {Authorization: `Bearer ${token}`}
     })
       .then(response=> {
@@ -87,7 +87,7 @@ function PrenotaPadel(){
         const durata = servizioSelezionato ? servizioSelezionato.durata : "01:30:00";
         const parti = durata.split(":");
         const durataInMinuti = parseInt(parti[0]) * 60 + parseInt(parti[1]);
-        fetch(`http://localhost:3001/campi/${form.campoId}/orari?data=${form.data}&durata=${durataInMinuti}`, {
+        fetch(`http://unable-kalie-mattiazerbini-d54da76b.koyeb.app/campi/${form.campoId}/orari?data=${form.data}&durata=${durataInMinuti}`, {
             headers: { 
                 Authorization: `Bearer ${localStorage.getItem("token")}`
         }})
@@ -109,7 +109,7 @@ function PrenotaPadel(){
         if(!form.data){setError("Seleziona una data"); return;}
         if(!form.oraInizio){setError("Seleziona un'ora di inizio"); return;}
         try{
-        const result = await fetch("http://localhost:3001/prenotazioni", {
+        const result = await fetch("http://unable-kalie-mattiazerbini-d54da76b.koyeb.app/prenotazioni", {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
@@ -127,7 +127,7 @@ function PrenotaPadel(){
             const nomeServizio = servizioSelezionato ? servizioSelezionato.nome : "Prenotazione padel";
             const prezzo = servizioSelezionato ? servizioSelezionato.prezzo : 10;
 
-            const stripeResult = await fetch("http://localhost:3001/pagamenti/checkout", {
+            const stripeResult = await fetch("http://unable-kalie-mattiazerbini-d54da76b.koyeb.app/pagamenti/checkout", {
                 method: "POST",
                 headers: {
               "Content-Type": "application/json",

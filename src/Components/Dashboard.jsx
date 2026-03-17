@@ -22,10 +22,10 @@ const headers = { Authorization: `Bearer ${token}` };
     const oggi = dataFormattata(new Date());
     /*USANDO PROMISE.ALL POSSIAMO ESEGUIRE PIU' FETCH INSIEME INVECE CHE FARLE UNA ALLA VOLTA COME IN QUESTO CASO */
     Promise.all([
-      fetch("http://localhost:3001/prenotazioni", {headers}).then(res => res.json()),
-      fetch("http://localhost:3001/utenti", {headers}).then(res => res.json()),
-      fetch("http://localhost:3001/campi", {headers}).then(res => res.json()),
-      fetch("http://localhost:3001/servizi", {headers}).then(res => res.json()),
+      fetch("http://unable-kalie-mattiazerbini-d54da76b.koyeb.app/prenotazioni", {headers}).then(res => res.json()),
+      fetch("http://unable-kalie-mattiazerbini-d54da76b.koyeb.app/utenti", {headers}).then(res => res.json()),
+      fetch("http://unable-kalie-mattiazerbini-d54da76b.koyeb.app/campi", {headers}).then(res => res.json()),
+      fetch("http://unable-kalie-mattiazerbini-d54da76b.koyeb.app/servizi", {headers}).then(res => res.json()),
     ]).then(([prenotazioni, utenti, campi, servizi]) => {
       const tuttePrenotazioni = Array.isArray(prenotazioni) ? prenotazioni : prenotazioni.content ?? [];
       const tuttiUtenti = Array.isArray(utenti) ? utenti : utenti.content ?? [];

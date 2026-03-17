@@ -44,7 +44,7 @@ function ServiziPadel(){
   const runFetch = () => {
     const headers = {};
     if(token ) headers.Authorization = `Bearer ${token}`;
-    fetch("http://localhost:3001/servizi", {
+    fetch("http://unable-kalie-mattiazerbini-d54da76b.koyeb.app/servizi", {
       method: "GET",
       headers: headers,
     })
@@ -66,7 +66,7 @@ function ServiziPadel(){
   const handleSubmit = (e) => {
     e.preventDefault();
 
-     fetch("http://localhost:3001/servizi", {
+     fetch("http://unable-kalie-mattiazerbini-d54da76b.koyeb.app/servizi", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -100,7 +100,7 @@ function ServiziPadel(){
     setMostraMessaggio(true);
   }
   const confermaEliminazione = () => {
-    fetch(`http://localhost:3001/servizi/${servizioEliminato}`, {
+    fetch(`http://unable-kalie-mattiazerbini-d54da76b.koyeb.app/servizi/${servizioEliminato}`, {
       method: "DELETE",
       headers: {
         Authorization: `Bearer ${token}`,
@@ -116,7 +116,7 @@ function ServiziPadel(){
 
 {/*Fetch PUT */}
 const getServizioId = async(id)=>{
-  const result = await fetch(`http://localhost:3001/servizi/${id}`, {
+  const result = await fetch(`http://unable-kalie-mattiazerbini-d54da76b.koyeb.app/servizi/${id}`, {
       headers: {
         Authorization: `Bearer ${token}`},
       });
@@ -135,7 +135,7 @@ const handleAttivo = async(id, stato) =>{
       durata: servizio.durata,
       attivo: !stato,
     };
-    const result = await fetch(`http://localhost:3001/servizi/${id}`, {
+    const result = await fetch(`http://unable-kalie-mattiazerbini-d54da76b.koyeb.app/servizi/${id}`, {
 method : "PUT",
 headers: {
   "Content-Type" : "application/json",
@@ -157,7 +157,7 @@ const handleUploadImg = async (id) => {
   formData.append("immagine", fileImg[id]);
 
   try{
-    const result = await fetch(`http://localhost:3001/servizi/${id}/immagine`, {
+    const result = await fetch(`http://unable-kalie-mattiazerbini-d54da76b.koyeb.app/servizi/${id}/immagine`, {
       method: "PATCH",
       headers : { Authorization: `Bearer ${token}`,
    },
