@@ -21,7 +21,7 @@ function Register(){
         e.preventDefault();
         setError("");
         try{
-        const result = await fetch("http://unable-kalie-mattiazerbini-d54da76b.koyeb.app//auth/register", {
+        const result = await fetch("http://unable-kalie-mattiazerbini-d54da76b.koyeb.app/auth/register", {
             method: "POST",
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify(form)
@@ -33,7 +33,7 @@ function Register(){
         const utente = await result.json();
    
     if(avatar && utente.id){
-        const login = await fetch("http://unable-kalie-mattiazerbini-d54da76b.koyeb.app//auth/login", {
+        const login = await fetch("http://unable-kalie-mattiazerbini-d54da76b.koyeb.app/auth/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({email: form.email, password: form.password})
