@@ -44,7 +44,7 @@ function Register(){
       if(token){
         const formData = new FormData();
         formData.append("avatar", avatar);
-        await fetch(`http://unable-kalie-mattiazerbini-d54da76b.koyeb.app//utenti/${utente.id}/avatar`, {
+        await fetch(`http://unable-kalie-mattiazerbini-d54da76b.koyeb.app/utenti/${utente.id}/avatar`, {
             method: "PATCH",
             headers: {Authorization: `Bearer ${token}`},
             body: formData
