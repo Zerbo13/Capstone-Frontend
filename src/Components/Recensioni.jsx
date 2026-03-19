@@ -91,8 +91,19 @@ export default function Recensioni(){
           {[1,2,3,4,5].map((i) => (<StarSvg key={i} filled={i <= num}/>))}
           </div>
       );
-    
 
+      const handleDelete = async (id) => {
+    try {
+        const res = await fetch(`https://teenage-hynda-mattiazerbini-e6e83c07.koyeb.app/recensioni/${id}`, {
+            method: "DELETE",
+            headers: { Authorization: `Bearer ${token}` }
+        });
+        if (!res.ok) throw new Error("Errore nell'eliminazione");
+        runFetch();
+    } catch (err) {
+        console.error(err);
+    }
+};
 
       return(
         <section className="py-5 text-white">
@@ -150,6 +161,12 @@ export default function Recensioni(){
                   <div className="mb-2">{renderStelle(r.stelle)}</div>
                   <p className="mb-1">{r.testo}</p>
                   <small className="text-muted">{r.data}</small>
+                  {ruolo === "ADMIN" && (
+                    <div className="mt-2">
+                      <Button variant="danger" size="sm" onClick={() => handleDelete(r.id)}>
+                         Elimina</Button>
+                         </div>
+                        )}
                 </div>
               </div>
             </div>
