@@ -24,7 +24,7 @@ export default function PrenotazioniUtente() {
 
   // FETCH GET PRENOTAZIONI
   const runFetch = () => {
-    fetch(`http://localhost:3001/prenotazioni/utente/${utenteId}`, {
+    fetch(`https://teenage-hynda-mattiazerbini-e6e83c07.koyeb.app/prenotazioni/utente/${utenteId}`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -48,7 +48,7 @@ export default function PrenotazioniUtente() {
 
   // CONFERMA ELIMINAZIONE
   const confermaEliminazione = () => {
-    fetch(`http://localhost:3001/prenotazioni/${prenotazioneEliminata}`, {
+    fetch(`https://teenage-hynda-mattiazerbini-e6e83c07.koyeb.app/prenotazioni/${prenotazioneEliminata}`, {
       method: "DELETE",
       headers: {
         Authorization: `Bearer ${token}`,

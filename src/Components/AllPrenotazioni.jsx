@@ -24,7 +24,7 @@ export default function AllPrenotazioni() {
 
   // FETCH GET PRENOTAZIONI
   const runFetch = () => {
-    fetch(`http://localhost:3001/prenotazioni`, {
+    fetch(`https://teenage-hynda-mattiazerbini-e6e83c07.koyeb.app/prenotazioni`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -54,7 +54,7 @@ export default function AllPrenotazioni() {
 
   // CONFERMA ELIMINAZIONE
   const confermaEliminazione = () => {
-    fetch(`http://localhost:3001/${prenotazioneEliminata}`, {
+    fetch(`https://teenage-hynda-mattiazerbini-e6e83c07.koyeb.app/${prenotazioneEliminata}`, {
       method: "DELETE",
       headers: {
         Authorization: `Bearer ${token}`,

@@ -40,7 +40,7 @@ if(token){
   
 useEffect(() => {
   if(!token || !userId) return;
-  fetch(`http://localhost:3001/utenti/${userId}`, {
+  fetch(`https://teenage-hynda-mattiazerbini-e6e83c07.koyeb.app/utenti/${userId}`, {
     headers: { Authorization: `Bearer ${token}`}
   })
   .then((result) => result.json())

@@ -19,7 +19,7 @@ export default function Login({ setIsLogged }) {
     setError("");
 
     try {
-      const res = await fetch("http://localhost:3001/auth/login", {
+      const res = await fetch("https://teenage-hynda-mattiazerbini-e6e83c07.koyeb.app/auth/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(form),
@@ -53,7 +53,7 @@ export default function Login({ setIsLogged }) {
     setResetSuccess("");
 
     try{
-      const result = await fetch("http://localhost:3001/utenti/reset-password", {
+      const result = await fetch("https://teenage-hynda-mattiazerbini-e6e83c07.koyeb.app/utenti/reset-password", {
         method: "PATCH",
         headers:{"Content-Type": "application/json" },
         body: JSON.stringify({

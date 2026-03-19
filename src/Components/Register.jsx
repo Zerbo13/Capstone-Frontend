@@ -21,7 +21,7 @@ function Register(){
         e.preventDefault();
         setError("");
         try{
-        const result = await fetch("http://localhost:3001/auth/register", {
+        const result = await fetch("https://teenage-hynda-mattiazerbini-e6e83c07.koyeb.app/auth/register", {
             method: "POST",
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify(form)
@@ -33,7 +33,7 @@ function Register(){
         const utente = await result.json();
    
     if(avatar && utente.id){
-        const login = await fetch("http://localhost:3001/auth/login", {
+        const login = await fetch("https://teenage-hynda-mattiazerbini-e6e83c07.koyeb.app/auth/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({email: form.email, password: form.password})
@@ -44,7 +44,7 @@ function Register(){
       if(token){
         const formData = new FormData();
         formData.append("avatar", avatar);
-        await fetch(`http://localhost:3001/utenti/${utente.id}/avatar`, {
+        await fetch(`https://teenage-hynda-mattiazerbini-e6e83c07.koyeb.app/utenti/${utente.id}/avatar`, {
             method: "PATCH",
             headers: {Authorization: `Bearer ${token}`},
             body: formData

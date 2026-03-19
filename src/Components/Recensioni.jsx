@@ -28,7 +28,7 @@ export default function Recensioni(){
       {/*Fetch GET */}
     
       const runFetch = () => {
-        fetch("http://localhost:3001/recensioni")
+        fetch("https://teenage-hynda-mattiazerbini-e6e83c07.koyeb.app/recensioni")
           .then((response) => response.json())
           .then((data) => {
             console.log(data)
@@ -48,7 +48,7 @@ export default function Recensioni(){
         e.preventDefault();
         setError("");
     
-         fetch("http://localhost:3001/recensioni", {
+         fetch("https://teenage-hynda-mattiazerbini-e6e83c07.koyeb.app/recensioni", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

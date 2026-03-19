@@ -43,7 +43,7 @@ export default function CampiPadel(){
   const runFetch = () => {
     const headers = {};
     if(token ) headers.Authorization = `Bearer ${token}`;
-    fetch("http://localhost:3001/campi", {
+    fetch("https://teenage-hynda-mattiazerbini-e6e83c07.koyeb.app/campi", {
       method: "GET",
       headers: headers,
     })
@@ -66,7 +66,7 @@ export default function CampiPadel(){
   const handleSubmit = (e) => {
     e.preventDefault();
 
-     fetch("http://localhost:3001/campi", {
+     fetch("https://teenage-hynda-mattiazerbini-e6e83c07.koyeb.app/campi", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -101,7 +101,7 @@ export default function CampiPadel(){
     setMostraMessaggio(true);
   }
   const confermaEliminazione = () => {
-    fetch(`http://localhost:3001/campi/${campoEliminato}`, {
+    fetch(`https://teenage-hynda-mattiazerbini-e6e83c07.koyeb.app/campi/${campoEliminato}`, {
       method: "DELETE",
       headers: {
         Authorization: `Bearer ${token}`,
@@ -120,7 +120,7 @@ export default function CampiPadel(){
 const handleAttivo = async(id, stato) =>{
 
   try{
-    const result = await fetch(`http://localhost:3001/campi/${id}/attivo`, {
+    const result = await fetch(`https://teenage-hynda-mattiazerbini-e6e83c07.koyeb.app/campi/${id}/attivo`, {
 method : "PATCH",
 headers: {
   "Content-Type" : "application/json",
@@ -142,7 +142,7 @@ const handleUploadImg = async (id) => {
   formData.append("immagine", fileImg[id]);
 
   try{
-    const result = await fetch(`http://localhost:3001/campi/${id}/immagine`, {
+    const result = await fetch(`https://teenage-hynda-mattiazerbini-e6e83c07.koyeb.app/campi/${id}/immagine`, {
       method: "PATCH",
       headers : { Authorization: `Bearer ${token}`,
    },

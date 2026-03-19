@@ -27,7 +27,7 @@ export default function UtentiRegistrati() {
 
   // FETCH GET PRENOTAZIONI
   const runFetch = () => {
-    fetch(`http://localhost:3001/utenti`, {
+    fetch(`https://teenage-hynda-mattiazerbini-e6e83c07.koyeb.app/utenti`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -57,7 +57,7 @@ export default function UtentiRegistrati() {
 
   // CONFERMA ELIMINAZIONE
   const confermaEliminazione = () => {
-    fetch(`http://localhost:3001/utenti/${utenteEliminato}`, {
+    fetch(`https://teenage-hynda-mattiazerbini-e6e83c07.koyeb.app/utenti/${utenteEliminato}`, {
       method: "DELETE",
       headers: {
         Authorization: `Bearer ${token}`,
