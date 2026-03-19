@@ -63,7 +63,7 @@ useEffect(() => {
     <Navbar expand="lg" className="navabar-padel sticky-top p-0">
       <Container>
         <Navbar.Brand href={linkHome} style={{marginLeft: "-60px"}}>
-          <img src="/logos/logo_padel.png" alt="Logo" width={180} className='m-0 p-0'/>
+          <img src="https://res.cloudinary.com/dbbxjymsw/image/upload/v1773918409/logo_padel_mi5kg8.png" alt="Logo" width={180} className='m-0 p-0'/>
           </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">

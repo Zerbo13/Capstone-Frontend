@@ -15,7 +15,7 @@ function UserHome(){
             <div className="row align-items-center">
         <div className="col-md-6 text-center text-md-start">
         < div className="bg-white bg-opacity-10 rounded-4 p-5">
-                <img src="./img/img_campoLogo.png" class="img-fluid p-2 bg-light" alt="Foto padel" />
+                <img src="https://res.cloudinary.com/dbbxjymsw/image/upload/v1773334220/f02mkoupsfuv79fvqewd.png" class="img-fluid p-2 bg-light" alt="Foto padel" />
                 <p className="mt-3 mb-0 fs-5 text-center text-white">Prenota, gioca, divertiti.</p>
               </div>
  </div>
