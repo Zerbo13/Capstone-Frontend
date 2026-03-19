@@ -27,7 +27,7 @@ export default function UtentiRegistrati() {
 
   // FETCH GET PRENOTAZIONI
   const runFetch = () => {
-    fetch(`https://unable-kalie-mattiazerbini-d54da76b.koyeb.app/utenti`, {
+    fetch(`http://localhost:3001/utenti`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -57,7 +57,7 @@ export default function UtentiRegistrati() {
 
   // CONFERMA ELIMINAZIONE
   const confermaEliminazione = () => {
-    fetch(`https://unable-kalie-mattiazerbini-d54da76b.koyeb.app/utenti/${utenteEliminato}`, {
+    fetch(`http://localhost:3001/utenti/${utenteEliminato}`, {
       method: "DELETE",
       headers: {
         Authorization: `Bearer ${token}`,

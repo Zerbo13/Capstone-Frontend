@@ -34,7 +34,7 @@ export default function ProfiloUtente(){
     };
 
     const fetchUtente = () => {
-        fetch(`https://unable-kalie-mattiazerbini-d54da76b.koyeb.app/utenti/${userId}`, {
+        fetch(`http://localhost:3001/utenti/${userId}`, {
             headers: {Authorization: `Bearer ${token}`}
         })
         .then(result => result.json())
@@ -52,7 +52,7 @@ export default function ProfiloUtente(){
 
        /*fetch prenotazioni get */
         const fetchPrenotazioni = () => {
-        fetch(`https://unable-kalie-mattiazerbini-d54da76b.koyeb.app/prenotazioni/utente/${userId}`, {
+        fetch(`http://localhost:3001/prenotazioni/utente/${userId}`, {
             headers: {Authorization: `Bearer ${token}`}
         })
         .then(result => result.json())
@@ -63,7 +63,7 @@ export default function ProfiloUtente(){
 
        /*fetch recensioni get */
         const fetchRecensioni = () => {
-        fetch(`https://unable-kalie-mattiazerbini-d54da76b.koyeb.app/recensioni`)
+        fetch(`http://localhost:3001/recensioni`)
         .then(result => result.json())
         .then(data =>{const mieRecensioni = Array.isArray(data)? data.filter(r => String(r.utente?.id) === String(userId)) : [];
         setRecensioni(mieRecensioni);
@@ -85,7 +85,7 @@ export default function ProfiloUtente(){
         const formData = new FormData();
         formData.append("avatar", avatar);
         try{
-            const result = await fetch(`https://unable-kalie-mattiazerbini-d54da76b.koyeb.app/utenti/${utente.id}/avatar`, {
+            const result = await fetch(`http://localhost:3001/utenti/${utente.id}/avatar`, {
             method: "PATCH",
             headers: {Authorization: `Bearer ${token}`},
             body: formData
@@ -103,7 +103,7 @@ export default function ProfiloUtente(){
     const handleUpdateProfile = async (e) => {
         e.preventDefault();
         try{
-            const result = await fetch(`https://unable-kalie-mattiazerbini-d54da76b.koyeb.app/utenti/${utente.id}`, {
+            const result = await fetch(`http://localhost:3001/utenti/${utente.id}`, {
                 method: "PUT",
             headers: {"Content-Type": "application/json",
                 Authorization: `Bearer ${token}`},

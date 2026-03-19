@@ -40,7 +40,7 @@ if(token){
   
 useEffect(() => {
   if(!token || !userId) return;
-  fetch(`https://unable-kalie-mattiazerbini-d54da76b.koyeb.app/utenti/${userId}`, {
+  fetch(`http://localhost:3001/utenti/${userId}`, {
     headers: { Authorization: `Bearer ${token}`}
   })
   .then((result) => result.json())

@@ -28,7 +28,7 @@ export default function Recensioni(){
       {/*Fetch GET */}
     
       const runFetch = () => {
-        fetch("https://unable-kalie-mattiazerbini-d54da76b.koyeb.app/recensioni")
+        fetch("http://localhost:3001/recensioni")
           .then((response) => response.json())
           .then((data) => {
             console.log(data)
@@ -48,7 +48,7 @@ export default function Recensioni(){
         e.preventDefault();
         setError("");
     
-         fetch("https://unable-kalie-mattiazerbini-d54da76b.koyeb.app/recensioni", {
+         fetch("http://localhost:3001/recensioni", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

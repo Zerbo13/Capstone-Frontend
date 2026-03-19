@@ -19,7 +19,7 @@ export default function Login({ setIsLogged }) {
     setError("");
 
     try {
-      const res = await fetch("https://unable-kalie-mattiazerbini-d54da76b.koyeb.app/auth/login", {
+      const res = await fetch("http://localhost:3001/auth/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(form),
@@ -53,7 +53,7 @@ export default function Login({ setIsLogged }) {
     setResetSuccess("");
 
     try{
-      const result = await fetch("https://unable-kalie-mattiazerbini-d54da76b.koyeb.app/utenti/reset-password", {
+      const result = await fetch("http://localhost:3001/utenti/reset-password", {
         method: "PATCH",
         headers:{"Content-Type": "application/json" },
         body: JSON.stringify({
