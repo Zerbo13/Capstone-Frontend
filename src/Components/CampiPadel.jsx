@@ -192,7 +192,7 @@ const handleUploadImg = async (id) => {
                   <Form.Check type="checkbox" label="Coperto" checked={nuovoCampo.coperto} onChange={(e) => setNuovocampo({...nuovoCampo, coperto: e.target.checked})}/>
                 </Form.Group>
 
-                <Button type="submit" className="button-log">Aggiungi il nuovo servizio</Button>
+                <Button type="submit" className="button-log">Aggiungi il nuovo campo</Button>
               </Form>
             )}
             {/*Modale eliminazione campo solo l'admin lo può eliminare  */}
