@@ -108,12 +108,15 @@ export default function UtentiRegistrati() {
           <tbody>
             {filtraUtenti.map((p) => (
               <tr key={p.id}>
-                <td>{p.avatar ? (<img src={p.avatar} alt="foto profilo" style={{width: "45px", height:"45px", borderRadius: "50%", objectFit: "cover", border: "2px solid black"}} />
-                 ): (
-                  <div style={{width: "35px", height:"35px", borderRadius: "50%", backgroundColor: "#1d548c", display: "flex", alignItems: "center", justifyContent: "center"}}>
-                                    <FaUserTie style={{width: "40px",height:"25px",}} />
-                                     </div>
-                )}</td>
+               <td className="text-center align-middle">
+    {p.avatar ? (
+        <img src={p.avatar} alt="foto profilo" style={{width: "45px", height:"45px", borderRadius: "50%", objectFit: "cover", border: "2px solid black"}} />
+    ) : (
+        <div style={{width: "35px", height:"35px", borderRadius: "50%", backgroundColor: "#1d548c", display: "flex", alignItems: "center", justifyContent: "center"}}>
+            <FaUserTie style={{width: "40px", height:"25px"}} />
+        </div>
+    )}
+</td>
                 <td>{p.nome}</td>
                 <td>{p.cognome }</td>
                 <td>{p.email}</td>
