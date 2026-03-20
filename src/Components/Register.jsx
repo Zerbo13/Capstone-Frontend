@@ -113,8 +113,8 @@ function Register(){
                         ) : (
                             "Clicca per registrarti")}
                         </button>
-                    <Link to="/login" className="text-decoration-none text-white">Sei già registrato? Clicca qui per il login </Link><br></br>
-                    <Link to="/home" className="text-decoration-none text-white mt-0">Torna alla home ↩️</Link>
+                    <Link to="/login" className="text-decoration-none text-white mt2">Sei già registrato? Clicca qui per il login </Link><br></br>
+                    <Link to="/home" className="text-decoration-none text-white mt-2">Torna alla home ↩️</Link>
 
                  </form>
                  </div>
