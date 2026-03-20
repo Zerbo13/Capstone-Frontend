@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
-import { Button } from "bootstrap";
 
 export default function Login({ setIsLogged }) {
 
@@ -12,12 +11,14 @@ export default function Login({ setIsLogged }) {
   const [resetForm, setResetForm] = useState({email: "", nuovaPassword: "" });
   const [resetError, setResetError] = useState("");
   const [resetSuccess, setResetSuccess] = useState("");
+  const [caricamento, setCaricamento] = useState(false);
+
 
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
-
+    setCaricamento(true);
     try {
       const res = await fetch("https://teenage-hynda-mattiazerbini-e6e83c07.koyeb.app/auth/login", {
         method: "POST",
@@ -43,6 +44,8 @@ export default function Login({ setIsLogged }) {
     } catch (err) {
       console.error(err);
       setError("Email o password errate!");
+    }finally{
+      setCaricamento(false);
     }
   };
 
@@ -101,8 +104,14 @@ export default function Login({ setIsLogged }) {
           onChange={(e) => setForm({ ...form, password: e.target.value })}
         />
 
-        <button type="submit" className="btn btn-primary w-100">
-          Accedi
+        <button type="submit" className="btn btn-primary w-100" disabled={caricamento}>
+          {caricamento ? (
+            <>
+            <span className="spinner-border spinner-border-sm me-2" sole="status">Login in corso</span>
+            </>
+          ) : (
+            "Accedi"
+          )}
         </button>
         <button type="button" className="btn btn-link text-white mt-2 p-0" onClick={() => setMostraResetForm(true)}>Password dimenticata?</button>
 
