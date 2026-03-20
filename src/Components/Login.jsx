@@ -107,7 +107,7 @@ export default function Login({ setIsLogged }) {
         <button type="submit" className="btn btn-primary w-100" disabled={caricamento}>
           {caricamento ? (
             <>
-            <span className="spinner-border spinner-border-sm me-2" sole="status">Login in corso</span>
+            <span className="spinner-border spinner-border-sm me-2" sole="status"></span>
             </>
           ) : (
             "Accedi"

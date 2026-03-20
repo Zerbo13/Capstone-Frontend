@@ -109,7 +109,6 @@ function Register(){
                     {caricamento ? (
                         <>
                         <span className="spinner-border spinner-border-sm me-2" role="status"></span>
-                        Registrazione in corso...
                         </>
                         ) : (
                             "Clicca per registrarti")}
