@@ -16,10 +16,12 @@ function Register(){
 
     const[error, setError] = useState("");
     const[avatar, setAvatar] = useState(null);
+      const [caricamento, setCaricamento] = useState(false);
    
     const handleSubmit = async (e) =>{
         e.preventDefault();
         setError("");
+        setCaricamento(true);
         try{
         const result = await fetch("https://teenage-hynda-mattiazerbini-e6e83c07.koyeb.app/auth/register", {
             method: "POST",
@@ -55,6 +57,8 @@ function Register(){
             navigate("/login");
         }catch(err){
             setError(err.message);
+         }finally{
+            setCaricamento(false);
          }
     };
 
@@ -101,8 +105,15 @@ function Register(){
                     /*Viene mostrata in anteprima l'avatar che verrà messo*/ 
                     <img src={URL.createObjectURL(avatar)} alt="anteprima" style={{width: "45px", height:"45px", borderRadius: "50%", objectFit: "cover", marginBottom: "10px"}} />
                 )}
-
-                    <button className="btn btn-primary w-100">Clicca per registrarti</button>
+                <button className="btn btn-primary w-100" disabled={caricamento}>
+                    {caricamento ? (
+                        <>
+                        <span className="spinner-border spinner-border-sm me-2" role="status"></span>
+                        Registrazione in corso...
+                        </>
+                        ) : (
+                            "Clicca per registrarti")}
+                        </button>
                     <Link to="/login" className="text-decoration-none text-white">Sei già registrato? Clicca qui per il login </Link><br></br>
                     <Link to="/home" className="text-decoration-none text-white mt-0">Torna alla home ↩️</Link>
 
