@@ -107,7 +107,7 @@ export default function Login({ setIsLogged }) {
         <button type="submit" className="btn btn-primary w-100" disabled={caricamento}>
           {caricamento ? (
             <>
-            <span className="spinner-border spinner-border-sm me-2" sole="status"></span>
+            <span className="spinner-border spinner-border-sm me-2" role="status"></span>
             </>
           ) : (
             "Accedi"
@@ -115,11 +115,11 @@ export default function Login({ setIsLogged }) {
         </button>
         <button type="button" className="btn btn-link text-white mt-2 p-0" onClick={() => setMostraResetForm(true)}>Password dimenticata?</button>
 
-        <Link to="/register" className="text-decoration-none mt-2 d-block text-white">
+        <Link to="/register" className="text-decoration-none mt-3 d-block text-white">
           Non sei ancora registrato? Clicca qui per registrarti
         </Link>
 
-        <Link to="/home" className="text-decoration-none text-white mt-2 d-block">
+        <Link to="/home" className="text-decoration-none text-white mt-3 d-block">
           Torna alla home ↩️
         </Link>
       </form>
@@ -131,7 +131,13 @@ export default function Login({ setIsLogged }) {
           {resetSuccess && <div className="alert alert-success">{resetSuccess}</div> }
           <input className="form-control mb-2" placeholder="Inserisci la tua email" type="email" value={resetForm.email} onChange={(e) => setResetForm({...resetForm, email: e.target.value})}/>
           <input className="form-control mb-2" placeholder="Inserisci la nuova password" type="password" value={resetForm.nuovaPassword} onChange={(e) => setResetForm({...resetForm, nuovaPassword: e.target.value})}/>
-          <button type="submit" className="btn button-log w-100">Aggiorna password</button> 
+          <button type="submit" className="btn button-log w-100" role="status">{caricamento ? (
+            <>
+            <span className="spinner-border spinner-border-sm me-2" role="status"></span>
+            </>
+          ) : (
+            "Aggiorna Password"
+          )}</button> 
           <button type="button" className="btn btn-link text-white mt-2 p-0" onClick={() => {setMostraResetForm(false); setResetError(""); setResetForm({email: "", nuovaPassword: ""});}}>Chiudi </button>
 
            </form>
