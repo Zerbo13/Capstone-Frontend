@@ -72,12 +72,14 @@ useEffect(() => {
             <Nav.Link  as={Link} to="/servizi" className='text-dark'>Servizi</Nav.Link>
             <Nav.Link  as={Link} to="/campi" className='text-dark'>Campi</Nav.Link>
             
+                        <Nav.Link  as={Link} to="/recensioni" className='text-dark'>Recensioni</Nav.Link>
+
+
             {/*Se sei user viene mostrato questo */}
             { ruolo !== "ADMIN" && isLogged &&(
               <>
             <Nav.Link  as={Link} to="/prenotazioni" className='text-dark'>Prenota</Nav.Link>
             <Nav.Link  as={Link} to="/prenotazioniUtente" className='text-dark'>Le mie prenotazioni</Nav.Link>
-            <Nav.Link  as={Link} to="/recensioni" className='text-dark'>Recensioni</Nav.Link>
 
             </>
             )}
