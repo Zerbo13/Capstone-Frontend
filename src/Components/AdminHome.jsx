@@ -17,7 +17,7 @@ function AdminHome(){
         <div  className="bg-white bg-opacity-10 rounded-4 p-5">
         <h4 className="fw-bold mb-0  text-white">Gestione veloce</h4>
       <div className="row g-4 p-5">
-        <div className="col">
+        <div className="col-12 col-sm-6 col-lg">
           <Link to="/allPrenotazioni" className="card border-0 shadow-sm text-decoration-none h-100">
             <div className="card-body text-center p-4">
               <span style={{ fontSize: "2.5rem" }}>📅</span>
@@ -26,9 +26,9 @@ function AdminHome(){
             </div>
           </Link>
         </div>
-
-        <div className="col">
-          <Link to="/prenotazioniOggi" className="card border-0 shadow-sm text-decoration-none h-100">
+        
+        <div className="col-12 col-sm-6 col-lg">
+            <Link to="/prenotazioniOggi" className="card border-0 shadow-sm text-decoration-none h-100">
             <div className="card-body text-center p-4">
               <span style={{ fontSize: "2.5rem" }}>📌</span>
               <h6 className="fw-bold mt-2 text-dark">Prenotazioni Oggi</h6>
@@ -37,7 +37,7 @@ function AdminHome(){
           </Link>
         </div>
 
-        <div className="col">
+        <div className="col-12 col-sm-6 col-lg">
           <Link to="/utentiRegistrati" className="card border-0 shadow-sm text-decoration-none h-100">
             <div className="card-body text-center p-4">
               <span style={{ fontSize: "2.5rem" }}>🙋</span>
@@ -47,7 +47,7 @@ function AdminHome(){
           </Link>
         </div>
 
-        <div className="col">
+        <div className="col-12 col-sm-6 col-lg">
           <Link to="/campi" className="card border-0 shadow-sm text-decoration-none h-100">
             <div className="card-body text-center p-4">
               <span style={{ fontSize: "2.5rem" }}>🏟️</span>
@@ -56,7 +56,8 @@ function AdminHome(){
             </div>
           </Link>
         </div>
-         <div className="col">
+        
+         <div className="col-12 col-sm-6 col-lg">
           <Link to="/servizi" className="card border-0 shadow-sm text-decoration-none h-100">
             <div className="card-body text-center p-4">
               <span style={{ fontSize: "2.5rem" }}>🎾</span>

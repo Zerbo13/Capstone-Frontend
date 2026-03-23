@@ -75,11 +75,11 @@ function Register(){
 
 
            {/*NOME */}
-                <input className="form-control mb-2" placeholder="Mario" onChange={(e) => setForm({
+                <input className="form-control mb-2" placeholder="Nome" onChange={(e) => setForm({
                     ... form, nome: e.target.value})} />
 
            {/*COGNOME */}
-                <input className="form-control mb-2" placeholder="Rossi" onChange={(e) => setForm({
+                <input className="form-control mb-2" placeholder="Congome" onChange={(e) => setForm({
                     ... form, cognome: e.target.value})} />
 
            {/*EMAIL */}
@@ -87,7 +87,7 @@ function Register(){
                     ... form, email: e.target.value})} />
 
             {/*PASSWORD */}
-                <input className="form-control mb-2" placeholder="Mario123" onChange={(e) => setForm({
+                <input className="form-control mb-2" placeholder="Password" onChange={(e) => setForm({
                     ... form, password: e.target.value})} />
 
             {/*DATA DI NASCITA */}
