@@ -85,6 +85,7 @@ export default function AllPrenotazioni() {
       ) : (
 
         /*Tabella per visualizzare tutte le prenotazioni parte admin */
+        <div className="table-responsive mt-4">
         <table className="table mt-4 ">
           <thead>
             <tr>
@@ -127,6 +128,7 @@ export default function AllPrenotazioni() {
             ))}
           </tbody>
         </table>
+        </div>
       )}
 
       {/* MODALE ELIMINAZIONE */}

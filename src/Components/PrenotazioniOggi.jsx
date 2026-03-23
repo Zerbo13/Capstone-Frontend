@@ -127,7 +127,8 @@ const cambiaGiorno = (offset) => {
       {filtraPrenotazioni.length === 0 ? (
         <p className="mt-3 text-white text-center fw-bold fs-5">Non sono presenti prenotazioni per questo giorno selezionato.</p>
       ) : (
-        <table className="table mt-4 ">
+        <div className="table-responsive mt-4">
+        <table className="table ">
           <thead>
             <tr>
               <th>Utente</th>
@@ -167,6 +168,7 @@ const cambiaGiorno = (offset) => {
             ))}
           </tbody>
         </table>
+        </div>
       )}
 
       {/* MODALE ELIMINAZIONE */}

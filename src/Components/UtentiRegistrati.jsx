@@ -91,7 +91,8 @@ export default function UtentiRegistrati() {
         <p className="mt-3 text-white text-center fw-bold">Non sono presenti utenti.</p>
       ) : (
         /*Vengono mostrati gli utenti registarti nell'app all'admin tramite una tabella */
-        <table className="table mt-4 text-center ">
+        <div className="table-responsive mt-4">
+        <table className="table  text-center ">
           <thead>
             <tr>
               <th>Foto profilo</th>
@@ -136,6 +137,7 @@ export default function UtentiRegistrati() {
             ))}
           </tbody>
         </table>
+        </div>
       )}
 
       {/* MODALE ELIMINAZIONE */}
