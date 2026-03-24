@@ -125,8 +125,7 @@ useEffect(() => {
               }
                id="user-dropdown"
                align="end">
-                <NavDropdown.Item as={Link} to="/profilo" className='text-center'><FaUser /> Account
-</NavDropdown.Item>
+                <NavDropdown.Item as={Link} to="/profilo" className='text-center'><FaUser /> Account</NavDropdown.Item>
               <NavDropdown.Divider />
               <NavDropdown.Item onClick={() => setMostraMessaggio(true)} className='text-center text-danger'>
                 <LuSquareArrowLeft /> Logout

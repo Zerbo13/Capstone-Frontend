@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { jwtDecode } from "jwt-decode";
-import { Form, Button, Alert } from "react-bootstrap";
-
+import { Form, Button, Alert, Modal } from "react-bootstrap";
 
 
 export default function Recensioni(){
@@ -10,7 +9,8 @@ export default function Recensioni(){
     const[mostraAlert, setMostraAlert] = useState(false);
     const [error, setError] = useState("");
     const [hover, setHover] = useState(0);
-
+    const[mostraMessaggio, setMostraMessaggio] = useState(false);
+    const[recensioneEliminata, setRecensioneElminata] = useState(null);
 
     const token = localStorage.getItem("token");
       let ruolo = null;
@@ -92,13 +92,14 @@ export default function Recensioni(){
           </div>
       );
 
-      const handleDelete = async (id) => {
+      const handleDelete = async () => {
     try {
-        const res = await fetch(`https://teenage-hynda-mattiazerbini-e6e83c07.koyeb.app/recensioni/${id}`, {
+        const res = await fetch(`https://teenage-hynda-mattiazerbini-e6e83c07.koyeb.app/recensioni/${recensioneEliminata}`, {
             method: "DELETE",
             headers: { Authorization: `Bearer ${token}` }
         });
         if (!res.ok) throw new Error("Errore nell'eliminazione");
+        setMostraMessaggio(false);
         runFetch();
     } catch (err) {
         console.error(err);
@@ -106,6 +107,7 @@ export default function Recensioni(){
 };
 
       return(
+        <>
         <section className="py-5 text-white">
         <div className="container">
             {mostraAlert && ( <Alert variant="success" className="mt-3">Recensione inviata correttamente!</Alert>)}
@@ -163,7 +165,7 @@ export default function Recensioni(){
                   <small className="text-muted">{r.data}</small>
                   {ruolo === "ADMIN" && (
                     <div className="mt-2">
-                      <Button variant="danger" size="sm" onClick={() => handleDelete(r.id)}>
+                      <Button variant="danger" size="sm" onClick={() => {setRecensioneElminata(r.id); setMostraMessaggio(true);}}>
                          Elimina</Button>
                          </div>
                         )}
@@ -176,5 +178,14 @@ export default function Recensioni(){
            )}
         </div>
       </section> 
+      <Modal show={mostraMessaggio} onHide={() => setMostraMessaggio(false)} centered>
+                            <Modal.Header closeButton>
+                              <Modal.Title className='text-center'>Cinferma eliminazione</Modal.Title>
+                            </Modal.Header>
+                            <Modal.Body className='text-center'>Sei sicuro di voler eliminare questa recensione?</Modal.Body>
+                           <Modal.Footer><Button variant="success" onClick={()=> setMostraMessaggio(false)}>Annulla</Button>
+                           <Button variant="danger" onClick={handleDelete}>Elimina</Button></Modal.Footer> 
+                          </Modal>
+                          </>
       );
 }
