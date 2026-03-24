@@ -224,7 +224,7 @@ function PrenotaPadel(){
                 <div className="p-3 border rounded-4 text-center" style={{cursor: "pointer", flex:1, backgroundColor: metodoPagamento === "contanti" ? "#007bff" : "#266F44", color: "white"}} onClick={() => setMetodoPagamento("contanti")}>Paga al centro <GiMoneyStack />
 </div>
             </div>
-            <button as={Link} to="/prenotazioniUtente" type="submit" className="btn button-log w-25 mt-3 mb-5">Conferma la prenotazione</button>
+            <button as={Link} to="/prenotazioniUtente" type="submit" className="btn button-log w-25 mt-3 mb-5 w-100">Conferma la prenotazione</button>
          </form>
          </div>  
          </div>

@@ -77,6 +77,7 @@ export default function PrenotazioniUtente() {
       {prenotazioni.length === 0 ? (
         <p className="mt-3 text-white">Non sono presenti prenotazioni.</p>
       ) : (
+        <div className="table-responsive mt-4">
         <table className="table mt-4 ">
           <thead>
             <tr>
@@ -117,6 +118,7 @@ export default function PrenotazioniUtente() {
             ))}
           </tbody>
         </table>
+        </div>
       )}
 
       {/* MODALE ELIMINAZIONE */}
